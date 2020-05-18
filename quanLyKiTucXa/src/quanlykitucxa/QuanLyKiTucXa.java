@@ -15,7 +15,8 @@ public class QuanLyKiTucXa {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("alo");
+        dangKiScreen a= new dangKiScreen();
+        a.setVisible(true);
         // TODO code application logic here
     }
     
