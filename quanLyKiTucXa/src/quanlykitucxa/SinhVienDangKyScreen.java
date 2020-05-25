@@ -5,6 +5,8 @@
  */
 package quanlykitucxa;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hieuuu
@@ -51,6 +53,9 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         tf_loaiPhong = new javax.swing.JTextField();
         tf_diaChiThuongTru = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,6 +107,17 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         jCheckBox1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jCheckBox1.setText("Tôi cam kết chấp hành nội quy Ký túc xá.");
 
+        jButton1.setText("Nội quy ký túc xá");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Các loại phòng ");
+
+        jLabel6.setText("jLabel6");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,54 +129,60 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jCheckBox1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel13)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tf_email))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel11)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tf_soDienThoai))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel9)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tf_diaChiThuongTru))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tf_soChungMinhThu))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel16)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tf_queQuan))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel14)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tf_ngaySinh))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel10)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tf_maSinhVien))
-                                .addComponent(jLabel3)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel15)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tf_hoten, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel8)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tf_loaiPhong))))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_email))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_soDienThoai))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_diaChiThuongTru))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_soChungMinhThu))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_queQuan))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_ngaySinh))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_maSinhVien))
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_hoten, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tf_loaiPhong))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(38, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(95, 95, 95))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +190,9 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
@@ -209,9 +233,13 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(tf_loaiPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(17, 17, 17)
                 .addComponent(jCheckBox1)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -220,6 +248,14 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
     private void tf_soChungMinhThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_soChungMinhThuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_soChungMinhThuActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        NoiQuyKyTucXa nq= new NoiQuyKyTucXa();
+        nq.setVisible(true);
+        this.dispose();
+        //JOptionPane.showMessageDialog(this, " Điều 1: HSSV có nguyện vọng ở nội trú phải làm đơn gửi  trung tâm Ký túc xá, hợp đồng thuê nhà ở và phải thực  hiện những cam kết ghi trong hợp đồng.  Điều 2: Giữ gìn an ninh, trật tự chung. Chấp hành nội quy giờ giấc học tập, sinh hoạt. Không tụ tập, tổ chức  bè phái, kích động, gây gổ, đánh nhau gây mất trật tự  trong Ký túc xá. Không ngồi, leo trèo, đi lại trên lan  can. Không vượt rào, trèo tường, ra khỏi ký túc xá.  Không thức khuya quá 23h30.  Điều 3: Không tự ý thay đổi chỗ ở, không tiếp khách  trong phòng. Bạn bè, người đến thăm tiếp đón tạo nơi  quy định, nghỉ lại qua đêm phải đăng ký, làm đơn bảo  lãnh đối với Trung tâm Ký túc xá.  Điều 4: Không leo trèo, hái hoa, bẻ cành, chặt phá cây,  ngồi chơi thêm thảm cỏ, hoa. Không đá bóng, đi, để xe  đạp, xe máy trong Ký túc xá. Không ngồi tự học, đi chơi  đôi nam, nữ nơi vắng vẻ trong đêm tối.  Điều 5: Không được uống rượu, bia trong Ký túc xá.  Không vận chuyển, tàng trữ, sử dụng và lôi kéo người  khác sử dụng các loại vũ khí, hung khí, chất cháy nổ,  các chất ma túy, tài liệu, băng đĩa có nội dung đồi  trụy, đánh bài, cờ bạc, mại dâm dưới bất kỳ hình thức  nào.  Điều 6: Có trách nhiệm giữ vệ sinh chung, thực hiện vệ  sinh hằng ngày, phòng ở sạch sẽ, gọn gàng, ngăn nắp. Đồ  dùng, tư trang cá nhân để đúng nơi quy định. Không viết, vẽ, dán giấy, tranh ảnh, đóng đinh lên tường, cửa. Giấy rác, đồ thải bỏ đúng nơi quy định.  Điều 7: Có trách nhiệm giữ gìn, bảo vệ tài sản cá nhân và tải sản trong khu nội trú. Không mang tài sản được  trang bị từ nơi này đến nơi khác. Nếu làm hư hỏng, mất  mát phải bồi thường theo quy định.  Điều 8: Chấp hành nghiêm chỉnh nội quy sử dụng cầu thang  máy, nhà ăn, quy định sử dụng điện, nước, internet.  Nghiêm cấm nấu ăn, tổ chức sinh nhật trong phòng ở với  bất kỳ hình thức nào.  Điều 9: Không có hành vi, tác phong ăn mặc thiếu văn hóa  gây ảnh hưởng tới môi trường sống. Ứng xử hòa nhã, lịch  sự, có văn hóa với bạn bè. Tôn trọng, lễ phép với Cán  bộ, Giáo viên, Công nhân viên trong Nhà trường.  Điều 10: Nếu vi phạm một trong những điều trên tùy theo  mức độ sẽ bị xử lý từ phê bình, khiển trách, cảnh cáo,  hủy hợp đồng thuê nhà ở nội trú, buộc thôi học, đề nghị  truy tố trước pháp luật.", "Nội quy ở ký túc xá", JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,6 +293,8 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -269,6 +307,7 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField tf_diaChiThuongTru;

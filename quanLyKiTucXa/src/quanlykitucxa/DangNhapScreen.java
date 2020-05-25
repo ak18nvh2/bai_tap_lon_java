@@ -110,7 +110,7 @@ public class DangNhapScreen extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(190, 520, 170, 23);
 
-        setBounds(0, 0, 555, 659);
+        setBounds(0, 0, 556, 659);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

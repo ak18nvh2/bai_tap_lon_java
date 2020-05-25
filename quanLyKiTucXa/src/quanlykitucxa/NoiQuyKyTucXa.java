@@ -16,6 +16,9 @@ public class NoiQuyKyTucXa extends javax.swing.JFrame {
      */
     public NoiQuyKyTucXa() {
         initComponents();
+        setTitle("Quản lý kí túc xá");
+        this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -27,31 +30,44 @@ public class NoiQuyKyTucXa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+
+        jLabel2.setText("Điều 1: HSSV có nguyện vọng ở nội trú phải làm đơn gửi trung tâm Ký túc xá, hợp đồng thuê nhà ở và phải thực hiện những cam kết ghi trong hợp đồng.  Điều 2: Giữ gìn an ninh, trật tự chung. Chấp hành nội quy giờ giấc học tập, sinh hoạt. Không tụ tập, tổ chức bè phái, kích động, gây gổ, đánh nhau gây mất trật tự trong Ký túc xá. Không ngồi, leo trèo, đi lại trên lan can. Không vượt rào, trèo tường, ra khỏi ký túc xá. Không thức khuya quá 23h30.  Điều 3: Không tự ý thay đổi chỗ ở, không tiếp khách trong phòng. Bạn bè, người đến thăm tiếp đón tạo nơi quy định, nghỉ lại qua đêm phải đăng ký, làm đơn bảo lãnh đối với Trung tâm Ký túc xá.  Điều 4: Không leo trèo, hái hoa, bẻ cành, chặt phá cây, ngồi chơi thêm thảm cỏ, hoa. Không đá bóng, đi, để xe đạp, xe máy trong Ký túc xá. Không ngồi tự học, đi chơi đôi nam, nữ nơi vắng vẻ trong đêm tối.  Điều 5: Không được uống rượu, bia trong Ký túc xá. Không vận chuyển, tàng trữ, sử dụng và lôi kéo người khác sử dụng các loại vũ khí, hung khí, chất cháy nổ, các chất ma túy, tài liệu, băng đĩa có nội dung đồi trụy, đánh bài, cờ bạc, mại dâm dưới bất kỳ hình thức nào.  Điều 6: Có trách nhiệm giữ vệ sinh chung, thực hiện vệ sinh hằng ngày, phòng ở sạch sẽ, gọn gàng, ngăn nắp. Đồ dùng, tư trang cá nhân để đúng nơi quy định. Không viết, vẽ, dán giấy, tranh ảnh, đóng đinh lên tường, cửa. Giấy rác, đồ thải bỏ đúng nơi quy định.  Điều 7: Có trách nhiệm giữ gìn, bảo vệ tài sản cá nhân và tải sản trong khu nội trú. Không mang tài sản được trang bị từ nơi này đến nơi khác. Nếu làm hư hỏng, mất mát phải bồi thường theo quy định.  Điều 8: Chấp hành nghiêm chỉnh nội quy sử dụng cầu thang máy, nhà ăn, quy định sử dụng điện, nước, internet. Nghiêm cấm nấu ăn, tổ chức sinh nhật trong phòng ở với bất kỳ hình thức nào.'  Điều 9: Không có hành vi, tác phong ăn mặc thiếu văn hóa gây ảnh hưởng tới môi trường sống. Ứng xử hòa nhã, lịch sự, có văn hóa với bạn bè. Tôn trọng, lễ phép với Cán bộ, Giáo viên, Công nhân viên trong Nhà trường.  Điều 10: Nếu vi phạm một trong những điều trên tùy theo mức độ sẽ bị xử lý từ phê bình, khiển trách, cảnh cáo, hủy hợp đồng thuê nhà ở nội trú, buộc thôi học, đề nghị truy tố trước pháp luật.");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().setLayout(null);
 
-        jLabel1.setText(" Điều 1: HSSV có nguyện vọng ở nội trú phải làm đơn gửi  trung tâm Ký túc xá, hợp đồng thuê nhà ở và phải thực  hiện những cam kết ghi trong hợp đồng.  Điều 2: Giữ gìn an ninh, trật tự chung. Chấp hành nội quy giờ giấc học tập, sinh hoạt. Không tụ tập, tổ chức  bè phái, kích động, gây gổ, đánh nhau gây mất trật tự  trong Ký túc xá. Không ngồi, leo trèo, đi lại trên lan  can. Không vượt rào, trèo tường, ra khỏi ký túc xá.  Không thức khuya quá 23h30.  Điều 3: Không tự ý thay đổi chỗ ở, không tiếp khách  trong phòng. Bạn bè, người đến thăm tiếp đón tạo nơi  quy định, nghỉ lại qua đêm phải đăng ký, làm đơn bảo  lãnh đối với Trung tâm Ký túc xá.  Điều 4: Không leo trèo, hái hoa, bẻ cành, chặt phá cây,  ngồi chơi thêm thảm cỏ, hoa. Không đá bóng, đi, để xe  đạp, xe máy trong Ký túc xá. Không ngồi tự học, đi chơi  đôi nam, nữ nơi vắng vẻ trong đêm tối.  Điều 5: Không được uống rượu, bia trong Ký túc xá.  Không vận chuyển, tàng trữ, sử dụng và lôi kéo người  khác sử dụng các loại vũ khí, hung khí, chất cháy nổ,  các chất ma túy, tài liệu, băng đĩa có nội dung đồi  trụy, đánh bài, cờ bạc, mại dâm dưới bất kỳ hình thức  nào.  Điều 6: Có trách nhiệm giữ vệ sinh chung, thực hiện vệ  sinh hằng ngày, phòng ở sạch sẽ, gọn gàng, ngăn nắp. Đồ  dùng, tư trang cá nhân để đúng nơi quy định. Không viết, vẽ, dán giấy, tranh ảnh, đóng đinh lên tường, cửa. Giấy rác, đồ thải bỏ đúng nơi quy định.  Điều 7: Có trách nhiệm giữ gìn, bảo vệ tài sản cá nhân và tải sản trong khu nội trú. Không mang tài sản được  trang bị từ nơi này đến nơi khác. Nếu làm hư hỏng, mất  mát phải bồi thường theo quy định.  Điều 8: Chấp hành nghiêm chỉnh nội quy sử dụng cầu thang  máy, nhà ăn, quy định sử dụng điện, nước, internet.  Nghiêm cấm nấu ăn, tổ chức sinh nhật trong phòng ở với  bất kỳ hình thức nào.  Điều 9: Không có hành vi, tác phong ăn mặc thiếu văn hóa  gây ảnh hưởng tới môi trường sống. Ứng xử hòa nhã, lịch  sự, có văn hóa với bạn bè. Tôn trọng, lễ phép với Cán  bộ, Giáo viên, Công nhân viên trong Nhà trường.  Điều 10: Nếu vi phạm một trong những điều trên tùy theo  mức độ sẽ bị xử lý từ phê bình, khiển trách, cảnh cáo,  hủy hợp đồng thuê nhà ở nội trú, buộc thôi học, đề nghị  truy tố trước pháp luật.");
+        jLabel1.setText("<html>Điều 1: HSSV có nguyện vọng ở nội trú phải làm đơn gửi trung tâm Ký túc xá, hợp đồng thuê nhà ở và phải thực hiện những cam kết ghi trong hợp đồng.<br>  Điều 2: Giữ gìn an ninh, trật tự chung. Chấp hành nội quy giờ giấc học tập, sinh hoạt. Không tụ tập, tổ chức bè phái, kích động, gây gổ, đánh nhau gây mất trật tự trong Ký túc xá. Không ngồi, leo trèo, đi lại trên lan can. Không vượt rào, trèo tường, ra khỏi ký túc xá. Không thức khuya quá 23h30. <br> Điều 3: Không tự ý thay đổi chỗ ở, không tiếp khách trong phòng. Bạn bè, người đến thăm tiếp đón tạo nơi quy định, nghỉ lại qua đêm phải đăng ký, làm đơn bảo lãnh đối với Trung tâm Ký túc xá. <br> Điều 4: Không leo trèo, hái hoa, bẻ cành, chặt phá cây, ngồi chơi thêm thảm cỏ, hoa. Không đá bóng, đi, để xe đạp, xe máy trong Ký túc xá. Không ngồi tự học, đi chơi đôi nam, nữ nơi vắng vẻ trong đêm tối. <br> Điều 5: Không được uống rượu, bia trong Ký túc xá. Không vận chuyển, tàng trữ, sử dụng và lôi kéo người khác sử dụng các loại vũ khí, hung khí, chất cháy nổ, các chất ma túy, tài liệu, băng đĩa có nội dung đồi trụy, đánh bài, cờ bạc, mại dâm dưới bất kỳ hình thức nào. <br> Điều 6: Có trách nhiệm giữ vệ sinh chung, thực hiện vệ sinh hằng ngày, phòng ở sạch sẽ, gọn gàng, ngăn nắp. Đồ dùng, tư trang cá nhân để đúng nơi quy định. Không viết, vẽ, dán giấy, tranh ảnh, đóng đinh lên tường, cửa. Giấy rác, đồ thải bỏ đúng nơi quy định. <br> Điều 7: Có trách nhiệm giữ gìn, bảo vệ tài sản cá nhân và tải sản trong khu nội trú. Không mang tài sản được trang bị từ nơi này đến nơi khác. Nếu làm hư hỏng, mất mát phải bồi thường theo quy định. <br> Điều 8: Chấp hành nghiêm chỉnh nội quy sử dụng cầu thang máy, nhà ăn, quy định sử dụng điện, nước, internet. Nghiêm cấm nấu ăn, tổ chức sinh nhật trong phòng ở với bất kỳ hình thức nào. <br> Điều 9: Không có hành vi, tác phong ăn mặc thiếu văn hóa gây ảnh hưởng tới môi trường sống. Ứng xử hòa nhã, lịch sự, có văn hóa với bạn bè. Tôn trọng, lễ phép với Cán bộ, Giáo viên, Công nhân viên trong Nhà trường. <br> Điều 10: Nếu vi phạm một trong những điều trên tùy theo mức độ sẽ bị xử lý từ phê bình, khiển trách, cảnh cáo, hủy hợp đồng thuê nhà ở nội trú, buộc thôi học, đề nghị truy tố trước pháp luật.</html>");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(10, -10, 440, 620);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(209, 209, 209))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addComponent(jLabel1)
-                .addContainerGap(285, Short.MAX_VALUE))
-        );
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel3.setText("<html>Nội quy ký túc xá Đại học Công Nghiệp Hà Nội</html>");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(40, 0, 380, 30);
 
-        pack();
+        jButton1.setText("Quay lại");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(180, 560, 100, 23);
+
+        setBounds(0, 0, 477, 637);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        SinhVienDangKyScreen a= new SinhVienDangKyScreen();
+        a.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -89,6 +105,9 @@ public class NoiQuyKyTucXa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

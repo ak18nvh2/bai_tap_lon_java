@@ -9,18 +9,15 @@ package quanlykitucxa;
  *
  * @author hieuuu
  */
-public class QuanLyKiTucXa {
+public class QuanLyKiTucXaMain {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        DangNhapScreen a= new DangNhapScreen();
-//        a.setVisible(true);
-//        SinhVienDangKyScreen sv= new SinhVienDangKyScreen();
-//        sv.setVisible(true);
- NoiQuyKyTucXa a= new NoiQuyKyTucXa();
- a.setVisible(true);
+        DangNhapScreen a= new DangNhapScreen();
+       a.setVisible(true);
+
         // TODO code application logic here
     }
     
