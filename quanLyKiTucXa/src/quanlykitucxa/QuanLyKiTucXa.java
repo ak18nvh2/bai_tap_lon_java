@@ -15,8 +15,12 @@ public class QuanLyKiTucXa {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        dangKiScreen a= new dangKiScreen();
-        a.setVisible(true);
+//        DangNhapScreen a= new DangNhapScreen();
+//        a.setVisible(true);
+//        SinhVienDangKyScreen sv= new SinhVienDangKyScreen();
+//        sv.setVisible(true);
+ NoiQuyKyTucXa a= new NoiQuyKyTucXa();
+ a.setVisible(true);
         // TODO code application logic here
     }
     
