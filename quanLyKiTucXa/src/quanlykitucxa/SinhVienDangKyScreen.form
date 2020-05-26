@@ -109,7 +109,11 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tf_loaiPhong" min="-2" pref="353" max="-2" attributes="0"/>
+                              <Component id="rb_phongCLC" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="rb_phongCoBan" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="rb_phongTieuChuan" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -117,14 +121,14 @@
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tf_taiKhoan" min="-2" pref="409" max="-2" attributes="0"/>
-                                  <Component id="tf_matKhau" min="-2" pref="412" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="tf_taiKhoan" pref="409" max="32767" attributes="0"/>
+                                  <Component id="tf_matKhau" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="jButton1" min="-2" pref="217" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -133,7 +137,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="tf_nhapLaiMatKhau" min="-2" pref="339" max="-2" attributes="0"/>
+                                      <Component id="tf_nhapLaiMatKhau" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -214,7 +218,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tf_loaiPhong" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="rb_phongCLC" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="rb_phongCoBan" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="rb_phongTieuChuan" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -243,7 +249,7 @@
                   <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="44" max="32767" attributes="0"/>
+              <EmptySpace pref="47" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -366,8 +372,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="tf_soDienThoai">
     </Component>
-    <Component class="javax.swing.JTextField" name="tf_loaiPhong">
-    </Component>
     <Component class="javax.swing.JTextField" name="tf_diaChiThuongTru">
     </Component>
     <Component class="javax.swing.JCheckBox" name="cb_camKet">
@@ -485,6 +489,21 @@
       </Events>
     </Component>
     <Component class="org.jdesktop.swingx.JXDatePicker" name="dp_ngaySinh">
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="rb_phongCLC">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ph&#xf2;ng ch&#x1ea5;t l&#x1b0;&#x1ee3;ng cao"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="rb_phongCoBan">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ph&#xf2;ng c&#x1a1; b&#x1ea3;n"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="rb_phongTieuChuan">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ph&#xf2;ng ti&#xea;u chu&#x1ea9;n"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
