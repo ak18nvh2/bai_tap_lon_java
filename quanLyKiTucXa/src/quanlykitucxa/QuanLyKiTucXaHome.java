@@ -18,6 +18,8 @@ public class QuanLyKiTucXaHome extends javax.swing.JFrame {
         
     }
     public QuanLyKiTucXaHome() {
+        setTitle("Quản lý kí túc xá");
+        this.setLocationRelativeTo(null);
         initComponents();
     }
 

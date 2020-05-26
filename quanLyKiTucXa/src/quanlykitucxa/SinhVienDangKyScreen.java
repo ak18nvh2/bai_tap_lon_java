@@ -21,7 +21,7 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         initComponents();
         setTitle("Quản lý kí túc xá");
         this.setLocationRelativeTo(null);
-        tf_diaChiThuongTru.setText("1");
+       /* tf_diaChiThuongTru.setText("1");
         tf_email.setText("1");
         tf_hoten.setText("1");
         tf_loaiPhong.setText("1");
@@ -36,7 +36,7 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
                 ButtonGroup bgroup = new ButtonGroup();
                 bgroup.add(rb_Nam);
                 bgroup.add(rb_Nu);
-                
+                */
 
 
     }
@@ -147,6 +147,11 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         });
 
         jButton2.setText("Các loại phòng ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quanlykitucxa/images/logo_login_SMALL.png"))); // NOI18N
 
@@ -178,12 +183,22 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         rb_Nam.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         rb_Nam.setText("Nam");
         rb_Nam.setActionCommand("");
+        rb_Nam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rb_NamActionPerformed(evt);
+            }
+        });
 
         jLabel18.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel18.setText("Giới tính:");
 
         rb_Nu.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         rb_Nu.setText("Nữ");
+        rb_Nu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rb_NuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -401,17 +416,75 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         if (diaChiThuongTru.equals("") || email.equals("") || hoTen.equals("") || loaiPhong.equals("") || maSV.equals("") || matKhau.equals("")
                 || ngaySinh.equals("") || nhapLai.equals("") || queQuan.equals("") || soCMT.equals("") || soDT.equals("") || taiKhoan.equals("")) {
             JOptionPane.showMessageDialog(this, "Cần nhập đủ tất cả thông tin!", "Thông báo", JOptionPane.ERROR_MESSAGE);
-        } else if (!matKhau.equals(nhapLai)) {
+        }else if((!rb_Nam.isSelected())&&(!rb_Nu.isSelected())){
+            JOptionPane.showMessageDialog(this, "Cần chọn giới tính!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+        }
+            else if (!matKhau.equals(nhapLai)) {
             JOptionPane.showMessageDialog(this, "Nhập lại mật khẩu chưa trùng khớp! Mời nhập lại!", "Thông báo", JOptionPane.ERROR_MESSAGE);
             tf_nhapLaiMatKhau.setText("");
         } else if (!cb_camKet.isSelected()) {
             JOptionPane.showMessageDialog(this, "Cần chấp nhận nội quy của ký túc xá!", "Thông báo", JOptionPane.ERROR_MESSAGE);
-        } else {
+        }else if(taiKhoan.equals("user01")|| taiKhoan.equals("user02")){
+            tf_taiKhoan.setText("");
+            JOptionPane.showMessageDialog(this, "Tài khoản này đã có người sử dụng! Vui lòng đăng ký một tài khoản khác!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
             JOptionPane.showMessageDialog(this, "Đăng ký thành công! Vui lòng chờ điện thoại từ ký túc xá!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
         }
 
 
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void rb_NamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_NamActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Chọn nam");
+    }//GEN-LAST:event_rb_NamActionPerformed
+
+    private void rb_NuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_NuActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Chọn nữ");
+    }//GEN-LAST:event_rb_NuActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String[] options = {"Phòng tiêu chuẩn", "Phòng cơ bản", "Phòng chất lượng cao"};
+        //Integer[] options = {1, 3, 5, 7, 9, 11};
+        //Double[] options = {3.141, 1.618};
+        //Character[] options = {'a', 'b', 'c', 'd'};
+        int x = JOptionPane.showOptionDialog(null, "Hãy chọn loại phòng bạn muốn xem!",
+                "Thông báo",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        if(x==2){
+            this.dispose();
+            LoaiPhongScreen a= new LoaiPhongScreen("PHÒNG CHẤT LƯỢNG CAO 4-6 GIƯỜNG","<html>Trang thiết bị: tủ cá nhân, giường tầng.<br><br> \n" +
+"Công trình phụ khép kín.<br><br>  \n" +
+"Giá phòng<br><br>  \n" +
+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 1	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 2	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 3<br><br>\n" +
+"4 người	&nbsp;&nbsp;&nbsp;&nbsp;550.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;550.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;450.000/SV/tháng<br> \n" +
+"6 người	&nbsp;&nbsp;&nbsp;&nbsp;367.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;367.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;300.000/SV/tháng</html>","/quanlykitucxa/images/clc/clc_1.jpg","/quanlykitucxa/images/clc/clc_2.jpg","/quanlykitucxa/images/clc/clc_3.jpg","/quanlykitucxa/images/clc/clc_4.jpg");
+            a.setVisible(true);
+        }
+        else if(x==1){
+           this.dispose();
+            LoaiPhongScreen a= new LoaiPhongScreen("PHÒNG CƠ BẢN 4-6 GIƯỜNG","<html>Trang thiết bị: tủ cá nhân, giường tầng.<br><br> \n" +
+"Công trình phụ khép kín.<br><br>  \n" +
+"Giá phòng<br><br>  \n" +
+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 1	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 2	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 3<br><br>\n" +
+"4 người	&nbsp;&nbsp;&nbsp;&nbsp;330.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;300.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;248.000/SV/tháng<br> \n" +
+"6 người	&nbsp;&nbsp;&nbsp;&nbsp;220.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;200.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;165.000/SV/tháng</html>","/quanlykitucxa/images/bt/coban_1.jpg","/quanlykitucxa/images/bt/coban_2.jpg","/quanlykitucxa/images/bt/coban_3.jpg","/quanlykitucxa/images/bt/coban_4.jpg");
+            a.setVisible(true);
+        }
+        else if(x==0){
+            this.dispose();
+            LoaiPhongScreen a= new LoaiPhongScreen("PHÒNG TIÊU CHUẨN 4-6 GIƯỜNG","<html>Trang thiết bị: Bình nóng lạnh, tủ cá nhân, giường tầng.<br><br> \n" +
+"Công trình phụ khép kín.<br><br>  \n" +
+"Giá phòng<br><br>  \n" +
+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 1	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 2	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 3<br><br>\n" +
+"4 người	&nbsp;&nbsp;&nbsp;&nbsp;420.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;375.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;330.000/SV/tháng<br> \n" +
+"6 người	&nbsp;&nbsp;&nbsp;&nbsp;280.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;250.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;220.000/SV/tháng</html>","/tc/tc_1.jpg","/tc/tc_2.jpg","/tc/tc_3.jpg","/tc/tc_4.jpg");
+            a.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

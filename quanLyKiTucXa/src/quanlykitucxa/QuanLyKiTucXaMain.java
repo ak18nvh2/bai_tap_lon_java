@@ -17,9 +17,8 @@ public class QuanLyKiTucXaMain {
     public static void main(String[] args) {
 //        DangNhapScreen a= new DangNhapScreen();
 //       a.setVisible(true);
-SinhVienDangKyScreen A= new SinhVienDangKyScreen
-        ();
-A.setVisible(true);
+    SinhVienDangKyScreen a= new SinhVienDangKyScreen();
+    a.setVisible(true);
 
         // TODO code application logic here
     }
