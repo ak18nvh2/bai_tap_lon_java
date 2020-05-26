@@ -72,7 +72,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tf_ngaySinh" max="32767" attributes="0"/>
+                                  <Component id="dp_ngaySinh" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -181,10 +181,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tf_ngaySinh" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="rb_Nam" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="rb_Nu" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="dp_ngaySinh" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -243,7 +243,7 @@
                   <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="46" max="32767" attributes="0"/>
+              <EmptySpace pref="44" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -354,8 +354,6 @@
     <Component class="javax.swing.JTextField" name="tf_hoten">
     </Component>
     <Component class="javax.swing.JTextField" name="tf_maSinhVien">
-    </Component>
-    <Component class="javax.swing.JTextField" name="tf_ngaySinh">
     </Component>
     <Component class="javax.swing.JTextField" name="tf_queQuan">
     </Component>
@@ -485,6 +483,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rb_NuActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="org.jdesktop.swingx.JXDatePicker" name="dp_ngaySinh">
     </Component>
   </SubComponents>
 </Form>
