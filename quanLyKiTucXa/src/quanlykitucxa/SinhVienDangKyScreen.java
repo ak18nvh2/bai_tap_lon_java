@@ -35,14 +35,13 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         tf_soChungMinhThu.setText("1");
         tf_soDienThoai.setText("1");
         tf_taiKhoan.setText("1");*/
-                ButtonGroup bgroup = new ButtonGroup();
-                bgroup.add(rb_Nam);
-                bgroup.add(rb_Nu);
-                ButtonGroup grPhong = new ButtonGroup();
-                grPhong.add(rb_phongCoBan);
-                grPhong.add(rb_phongCLC);
-                grPhong.add(rb_phongTieuChuan);
-         
+        ButtonGroup bgroup = new ButtonGroup();
+        bgroup.add(rb_Nam);
+        bgroup.add(rb_Nu);
+        ButtonGroup grPhong = new ButtonGroup();
+        grPhong.add(rb_phongCoBan);
+        grPhong.add(rb_phongCLC);
+        grPhong.add(rb_phongTieuChuan);
 
     }
 
@@ -412,9 +411,12 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        DangNhapScreen a = new DangNhapScreen();
-        a.setVisible(true);
-        this.dispose();
+        int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn quay lại?","Thông báo", JOptionPane.YES_NO_OPTION);
+        if (x == 0) {
+            this.dispose();
+            DangNhapScreen a = new DangNhapScreen();
+            a.setVisible(true);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -433,22 +435,20 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         } catch (Exception e) {
             checkNgaySinh = 0;
         }
-        
-       
+
         String nhapLai = tf_nhapLaiMatKhau.getText();
         String queQuan = tf_queQuan.getText();
         String soCMT = tf_soChungMinhThu.getText();
         String soDT = tf_soDienThoai.getText();
         String taiKhoan = tf_taiKhoan.getText();
-        if (diaChiThuongTru.equals("") || email.equals("") || hoTen.equals("") ||  maSV.equals("") || matKhau.equals("")
-                 || checkNgaySinh == 0 || nhapLai.equals("") || queQuan.equals("") || soCMT.equals("") || soDT.equals("") || taiKhoan.equals("")) {
+        if (diaChiThuongTru.equals("") || email.equals("") || hoTen.equals("") || maSV.equals("") || matKhau.equals("")
+                || checkNgaySinh == 0 || nhapLai.equals("") || queQuan.equals("") || soCMT.equals("") || soDT.equals("") || taiKhoan.equals("")) {
             JOptionPane.showMessageDialog(this, "Cần nhập đủ tất cả thông tin!", "Thông báo", JOptionPane.ERROR_MESSAGE);
         } else if ((!rb_Nam.isSelected()) && (!rb_Nu.isSelected())) {
             JOptionPane.showMessageDialog(this, "Cần chọn giới tính!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
-        } else if(!rb_phongCLC.isSelected() && !rb_phongCoBan.isSelected() && !rb_phongTieuChuan.isSelected()){
-            JOptionPane.showMessageDialog(this, "Bạn chưa chọn loại phòng!","Thông báo", JOptionPane.ERROR_MESSAGE);
-        }
-        else if (!matKhau.equals(nhapLai)) {
+        } else if (!rb_phongCLC.isSelected() && !rb_phongCoBan.isSelected() && !rb_phongTieuChuan.isSelected()) {
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn loại phòng!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        } else if (!matKhau.equals(nhapLai)) {
             JOptionPane.showMessageDialog(this, "Nhập lại mật khẩu chưa trùng khớp! Mời nhập lại!", "Thông báo", JOptionPane.ERROR_MESSAGE);
             tf_nhapLaiMatKhau.setText("");
         } else if (!cb_camKet.isSelected()) {
@@ -457,7 +457,11 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
             tf_taiKhoan.setText("");
             JOptionPane.showMessageDialog(this, "Tài khoản này đã có người sử dụng! Vui lòng đăng ký một tài khoản khác!", "Thông báo", JOptionPane.ERROR_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this, "Đăng ký thành công! Vui lòng chờ điện thoại từ ký túc xá!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+            int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn đã điền đúng thông tin đăng ký?","Thông báo", JOptionPane.YES_NO_OPTION);
+            if (x == 0) {
+
+                JOptionPane.showMessageDialog(this, "Đăng ký thành công! Vui lòng chờ điện thoại từ ký túc xá!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+            }
         }
 
 
@@ -476,7 +480,7 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String[] options = {"Phòng tiêu chuẩn", "Phòng cơ bản", "Phòng chất lượng cao"};
-        
+
         int x = JOptionPane.showOptionDialog(null, "Hãy chọn loại phòng bạn muốn xem!",
                 "Thông báo",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
