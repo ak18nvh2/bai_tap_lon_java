@@ -26,7 +26,7 @@ public class DangNhapScreen extends javax.swing.JFrame {
         initComponents();
         setTitle("Quản lý kí túc xá");
         this.setLocationRelativeTo(null);
-
+        
     }
 
     /**
@@ -88,6 +88,11 @@ public class DangNhapScreen extends javax.swing.JFrame {
         btnDangNhap.setBackground(new java.awt.Color(0, 51, 255));
         btnDangNhap.setForeground(new java.awt.Color(255, 255, 255));
         btnDangNhap.setText("ĐĂNG NHẬP");
+        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangNhapActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnDangNhap);
         btnDangNhap.setBounds(90, 480, 170, 23);
 
@@ -136,9 +141,7 @@ public class DangNhapScreen extends javax.swing.JFrame {
     private void btnQuenMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuenMatKhauActionPerformed
         // TODO add your handling code here:
         String[] options = {"Sinh viên", "Cán bộ quản lý"};
-        //Integer[] options = {1, 3, 5, 7, 9, 11};
-        //Double[] options = {3.141, 1.618};
-        //Character[] options = {'a', 'b', 'c', 'd'};
+        
         int x = JOptionPane.showOptionDialog(null, "Bạn là Sinh viên hay Cán bộ quản lý?",
                 "Thông báo",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
@@ -162,16 +165,70 @@ public class DangNhapScreen extends javax.swing.JFrame {
                 String m = JOptionPane.showInputDialog(this, "Nhập mã đăng ký của bạn!",
                         "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 if (m.equals("abc123")) {
-                    JOptionPane.showMessageDialog(this, "Mật khẩu mới của bạn là np1305!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Mật khẩu mới của bạn là np1305", "Thông báo", JOptionPane.PLAIN_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(this, "Sai mã đăng ký!", "Thông báo", JOptionPane.ERROR_MESSAGE);
                 }
-
+                
             } else {
                 JOptionPane.showMessageDialog(this, "Không tồn tại tài khoản bạn vừa nhập!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnQuenMatKhauActionPerformed
+
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+        // TODO add your handling code here:
+        String taiKhoan = tfTaiKhoan.getText();
+        String matKhau = tfMatKhau.getText();
+        if (taiKhoan.equals("")) {
+            JOptionPane.showMessageDialog(this, "Bạn chưa nhập tài khoản!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        } else if (matKhau.equals("")) {
+            JOptionPane.showMessageDialog(this, "Bạn chưa nhập mật khẩu!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String[] options = {"Sinh viên", "Cán bộ quản lý"};
+            
+            int x = JOptionPane.showOptionDialog(null, "Bạn là Sinh viên hay Cán bộ quản lý?",
+                    "Thông báo",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+            if (x == 0) {
+                //sinh vien
+                if (taiKhoan.equals("user01") || taiKhoan.equals("user02")) {
+                    if (matKhau.equals("123")) {
+                        if (taiKhoan.equals("user01")) {
+                            SinhVienHome a = new SinhVienHome();
+                            a.setVisible(true);
+                            this.dispose();
+                        } else if (taiKhoan.equals("user02")) {
+                            JOptionPane.showMessageDialog(this, "Vui lòng chờ ký túc xá liên hệ nhận phòng để tiếp tục sử dụng dịch vụ!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+                        }
+                        
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Sai mật khẩu!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Không tồn tại tài khoản!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                }
+                
+            } else if (x == 1) {
+                //can bo
+                if (taiKhoan.equals("admin01") || taiKhoan.equals("admin02")) {
+                    if (matKhau.equals("123")) {
+                        CanBoQuanLyHome a = new CanBoQuanLyHome();
+                        a.setVisible(true);
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Sai mật khẩu!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Không tồn tại tài khoản!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                }
+                
+            }
+            
+        }
+        
+
+    }//GEN-LAST:event_btnDangNhapActionPerformed
 
     /**
      * @param args the command line arguments
