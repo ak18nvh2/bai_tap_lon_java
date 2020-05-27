@@ -26,12 +26,7 @@ public class DangNhapScreen extends javax.swing.JFrame {
         initComponents();
         setTitle("Quản lý kí túc xá");
         this.setLocationRelativeTo(null);
-        
-        
-       
-    
 
-    
     }
 
     /**
@@ -97,6 +92,11 @@ public class DangNhapScreen extends javax.swing.JFrame {
         btnDangNhap.setBounds(90, 480, 170, 23);
 
         btnQuenMatKhau.setText("QUÊN MẬT KHẨU");
+        btnQuenMatKhau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuenMatKhauActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnQuenMatKhau);
         btnQuenMatKhau.setBounds(260, 480, 160, 23);
 
@@ -122,17 +122,56 @@ public class DangNhapScreen extends javax.swing.JFrame {
         int x = JOptionPane.showOptionDialog(null, "Bạn là Sinh viên hay Cán bộ quản lý?",
                 "Thông báo",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-        if(x==0){
-            SinhVienDangKyScreen sv= new SinhVienDangKyScreen();
+        if (x == 0) {
+            SinhVienDangKyScreen sv = new SinhVienDangKyScreen();
             sv.setVisible(true);
             this.dispose();
-        }
-        else if(x==1){
-            CanBoDangKyScreen cb= new CanBoDangKyScreen();
+        } else if (x == 1) {
+            CanBoDangKyScreen cb = new CanBoDangKyScreen();
             cb.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnQuenMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuenMatKhauActionPerformed
+        // TODO add your handling code here:
+        String[] options = {"Sinh viên", "Cán bộ quản lý"};
+        //Integer[] options = {1, 3, 5, 7, 9, 11};
+        //Double[] options = {3.141, 1.618};
+        //Character[] options = {'a', 'b', 'c', 'd'};
+        int x = JOptionPane.showOptionDialog(null, "Bạn là Sinh viên hay Cán bộ quản lý?",
+                "Thông báo",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        if (x == 0) {
+            //sinh vien
+
+            String s = JOptionPane.showInputDialog(this, "Nhập tài khoản của bạn!",
+                    "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            if (s.equals("user01") || s.equals("user02")) {
+                String m = JOptionPane.showInputDialog(this, "Nhập số điện thoại bạn đã đăng ký!",
+                        "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Mật khẩu mới đã được gửi về số điện thoại của bạn!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Không tồn tại tài khoản bạn vừa nhập!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+            }
+        } else if (x == 1) {
+            //can bo
+            String s = JOptionPane.showInputDialog(this, "Nhập tài khoản của bạn!",
+                    "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            if (s.equals("admin01") || s.equals("admin02")) {
+                String m = JOptionPane.showInputDialog(this, "Nhập mã đăng ký của bạn!",
+                        "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                if (m.equals("abc123")) {
+                    JOptionPane.showMessageDialog(this, "Mật khẩu mới của bạn là np1305!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Sai mã đăng ký!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Không tồn tại tài khoản bạn vừa nhập!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnQuenMatKhauActionPerformed
 
     /**
      * @param args the command line arguments
