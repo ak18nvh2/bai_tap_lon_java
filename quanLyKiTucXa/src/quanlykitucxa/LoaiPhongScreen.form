@@ -24,33 +24,42 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                      <Component id="lb_tenLoaiPhong" min="-2" pref="368" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lb_img_1" min="-2" pref="267" max="-2" attributes="0"/>
-                          <Component id="lb_img_3" alignment="1" min="-2" pref="267" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                              <Component id="lb_tenLoaiPhong" min="-2" pref="368" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                              <Component id="lb_thongTin" min="-2" pref="416" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="216" max="-2" attributes="0"/>
+                              <Component id="jButton1" min="-2" pref="130" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lb_img_2" min="-2" pref="270" max="-2" attributes="0"/>
-                          <Component id="lb_img_4" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="26" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lb_img_1" min="-2" pref="267" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lb_img_2" min="-2" pref="270" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lb_img_3" min="-2" pref="267" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lb_img_4" min="-2" pref="270" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
-                      <Component id="lb_thongTin" min="-2" pref="416" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="216" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="130" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -63,9 +72,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lb_img_1" min="-2" pref="207" max="-2" attributes="0"/>
-                  <Component id="lb_img_2" min="-2" pref="207" max="-2" attributes="0"/>
+                  <Component id="lb_img_2" alignment="1" min="-2" pref="207" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lb_img_4" min="-2" pref="203" max="-2" attributes="0"/>
                   <Component id="lb_img_3" min="-2" pref="203" max="-2" attributes="0"/>
@@ -102,28 +111,28 @@
     <Component class="javax.swing.JLabel" name="lb_img_1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/quanlykitucxa/images/clc/clc_1.jpg"/>
+          <Image iconType="3" name="/quanlykitucxa/images/clc1.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lb_img_2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/quanlykitucxa/images/clc/clc_2.jpg"/>
+          <Image iconType="3" name="/quanlykitucxa/images/coBan3.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lb_img_3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/quanlykitucxa/images/bt/coban_3.jpg"/>
+          <Image iconType="3" name="/quanlykitucxa/images/tc2.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lb_img_4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/tc/tc_1.jpg"/>
+          <Image iconType="3" name="/quanlykitucxa/images/clc2.png"/>
         </Property>
       </Properties>
     </Component>

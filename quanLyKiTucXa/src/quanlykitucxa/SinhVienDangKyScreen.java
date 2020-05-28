@@ -23,6 +23,7 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         initComponents();
         setTitle("Quản lý kí túc xá");
         this.setLocationRelativeTo(null);
+        
         /* tf_diaChiThuongTru.setText("1");
         tf_email.setText("1");
         tf_hoten.setText("1");
@@ -42,6 +43,7 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         grPhong.add(rb_phongCoBan);
         grPhong.add(rb_phongCLC);
         grPhong.add(rb_phongTieuChuan);
+        
 
     }
 
@@ -491,7 +493,7 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
                     + "Giá phòng<br><br>  \n"
                     + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 1	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 2	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 3<br><br>\n"
                     + "4 người	&nbsp;&nbsp;&nbsp;&nbsp;550.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;550.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;450.000/SV/tháng<br> \n"
-                    + "6 người	&nbsp;&nbsp;&nbsp;&nbsp;367.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;367.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;300.000/SV/tháng</html>", "/quanlykitucxa/images/clc/clc_1.jpg", "/quanlykitucxa/images/clc/clc_2.jpg", "/quanlykitucxa/images/clc/clc_3.jpg", "/quanlykitucxa/images/clc/clc_4.jpg");
+                    + "6 người	&nbsp;&nbsp;&nbsp;&nbsp;367.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;367.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;300.000/SV/tháng</html>", "/quanlykitucxa/images/clc1.png","/quanlykitucxa/images/clc2.png","/quanlykitucxa/images/clc3.png","/quanlykitucxa/images/clc4.png");
             a.setVisible(true);
         } else if (x == 1) {
             this.dispose();
@@ -500,7 +502,7 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
                     + "Giá phòng<br><br>  \n"
                     + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 1	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 2	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 3<br><br>\n"
                     + "4 người	&nbsp;&nbsp;&nbsp;&nbsp;330.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;300.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;248.000/SV/tháng<br> \n"
-                    + "6 người	&nbsp;&nbsp;&nbsp;&nbsp;220.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;200.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;165.000/SV/tháng</html>", "/quanlykitucxa/images/bt/coban_1.jpg", "/quanlykitucxa/images/bt/coban_2.jpg", "/quanlykitucxa/images/bt/coban_3.jpg", "/quanlykitucxa/images/bt/coban_4.jpg");
+                    + "6 người	&nbsp;&nbsp;&nbsp;&nbsp;220.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;200.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;165.000/SV/tháng</html>", "/quanlykitucxa/images/coBan3.png","/quanlykitucxa/images/coBan2.png","/quanlykitucxa/images/coBan1.png","/quanlykitucxa/images/coBan4.png");
             a.setVisible(true);
         } else if (x == 0) {
             this.dispose();
@@ -509,7 +511,7 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
                     + "Giá phòng<br><br>  \n"
                     + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 1	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 2	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 3<br><br>\n"
                     + "4 người	&nbsp;&nbsp;&nbsp;&nbsp;420.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;375.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;330.000/SV/tháng<br> \n"
-                    + "6 người	&nbsp;&nbsp;&nbsp;&nbsp;280.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;250.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;220.000/SV/tháng</html>", "/tc/tc_1.jpg", "/tc/tc_2.jpg", "/tc/tc_3.jpg", "/tc/tc_4.jpg");
+                    + "6 người	&nbsp;&nbsp;&nbsp;&nbsp;280.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;250.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;220.000/SV/tháng</html>", "/quanlykitucxa/images/tc2.png","/quanlykitucxa/images/tc1.png","/quanlykitucxa/images/tc4.png","/quanlykitucxa/images/tc3.png");
             a.setVisible(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed

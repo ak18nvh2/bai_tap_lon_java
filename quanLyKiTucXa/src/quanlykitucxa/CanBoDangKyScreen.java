@@ -94,6 +94,8 @@ public class CanBoDangKyScreen extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel7.setText("Mã đăng ký:");
 
+        tf_hoTen.setToolTipText("123");
+
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setText("Họ tên:");
 
