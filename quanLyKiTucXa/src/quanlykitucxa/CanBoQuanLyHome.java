@@ -64,6 +64,11 @@ public class CanBoQuanLyHome extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton2.setText("Quản lý hợp đồng thuê phòng");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton3.setText("Quản lý sinh viên");
@@ -221,6 +226,13 @@ public class CanBoQuanLyHome extends javax.swing.JFrame {
         SettingScreen a= new SettingScreen(1);
         a.setVisible(true);
     }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        QuanLyHopDongThuePhongScreen a= new QuanLyHopDongThuePhongScreen();
+        a.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
