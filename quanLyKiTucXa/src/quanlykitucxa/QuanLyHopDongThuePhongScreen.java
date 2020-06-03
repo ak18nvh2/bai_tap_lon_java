@@ -5,6 +5,10 @@
  */
 package quanlykitucxa;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author hieuuu
@@ -14,9 +18,12 @@ public class QuanLyHopDongThuePhongScreen extends javax.swing.JFrame {
     /**
      * Creates new form QuanLyHopDongThuePhongScreen
      */
-    public QuanLyHopDongThuePhongScreen() {
+    String hoTen,maCanBo;
+    public QuanLyHopDongThuePhongScreen(String hoTen, String maCanBo) {
         initComponents();setTitle("Quản lý kí túc xá");
         this.setLocationRelativeTo(null);
+        this.hoTen=hoTen;
+        this.maCanBo=maCanBo;
     }
 
     /**
@@ -133,38 +140,61 @@ public class QuanLyHopDongThuePhongScreen extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        CanBoQuanLyHome a= new CanBoQuanLyHome();
+        CanBoQuanLyHome a= new CanBoQuanLyHome(this.hoTen,this.maCanBo);
         a.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        DanhSachHopDongScreen a= new DanhSachHopDongScreen("DANH SÁCH HỢP ĐỒNG CHƯA KÝ");
-        a.setVisible(true);
+        DanhSachHopDongScreen a;
+        try {
+            a = new DanhSachHopDongScreen("DANH SÁCH HỢP ĐỒNG CHƯA KÝ",this.hoTen,this.maCanBo);a.setVisible(true);
         this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(QuanLyHopDongThuePhongScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
-        DanhSachHopDongScreen a= new DanhSachHopDongScreen("DANH SÁCH YÊU CẦU RA HẠN HỢP ĐỒNG");
-        a.setVisible(true);
+        DanhSachHopDongScreen a;
+        try {
+            a = new DanhSachHopDongScreen("DANH SÁCH YÊU CẦU RA HẠN HỢP ĐỒNG",this.hoTen,this.maCanBo);
+             a.setVisible(true);
         this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(QuanLyHopDongThuePhongScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        DanhSachHopDongScreen a= new DanhSachHopDongScreen("DANH SÁCH CÁC HỢP ĐỒNG SẮP KẾT THÚC");
-        a.setVisible(true);
+        DanhSachHopDongScreen a;
+        try {
+            a = new DanhSachHopDongScreen("DANH SÁCH CÁC HỢP ĐỒNG SẮP KẾT THÚC",this.hoTen,this.maCanBo);
+            a.setVisible(true);
         this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(QuanLyHopDongThuePhongScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        DanhSachHopDongScreen a= new DanhSachHopDongScreen("DANH SÁCH TẤT CẢ HỢP ĐỒNG");
-        a.setVisible(true);
+        DanhSachHopDongScreen a;
+        try {
+            a = new DanhSachHopDongScreen("DANH SÁCH TẤT CẢ HỢP ĐỒNG",this.hoTen,this.maCanBo);
+             a.setVisible(true);
         this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(QuanLyHopDongThuePhongScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
@@ -197,7 +227,7 @@ public class QuanLyHopDongThuePhongScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new QuanLyHopDongThuePhongScreen().setVisible(true);
+                new QuanLyHopDongThuePhongScreen("test","Test").setVisible(true);
             }
         });
     }

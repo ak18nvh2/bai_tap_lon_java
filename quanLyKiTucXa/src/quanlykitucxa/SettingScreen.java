@@ -17,12 +17,14 @@ public class SettingScreen extends javax.swing.JFrame {
      * Creates new form SettingScreen
      */
     int check = 1;
-
-    public SettingScreen(int noiDen) { // 0 la sv , 1 la can bo
+    String hoTen,ma;
+    public SettingScreen(int noiDen,String hoTen, String ma) { // 0 la sv , 1 la can bo
         initComponents();
         setTitle("Quản lý kí túc xá");
         this.setLocationRelativeTo(null);
         check = noiDen;
+        this.hoTen=hoTen;
+        this.ma=ma;
     }
 
     /**
@@ -98,7 +100,7 @@ public class SettingScreen extends javax.swing.JFrame {
         if (check == 1) {
            
                 this.dispose();
-                CanBoQuanLyHome a = new CanBoQuanLyHome();
+                CanBoQuanLyHome a = new CanBoQuanLyHome(this.hoTen, this.ma);
                 a.setVisible(true);
             }
          else {
@@ -142,7 +144,7 @@ public class SettingScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SettingScreen(1).setVisible(true);
+                new SettingScreen(1,"test","test").setVisible(true);
             }
         });
     }

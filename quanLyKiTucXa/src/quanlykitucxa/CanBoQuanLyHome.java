@@ -14,15 +14,16 @@ public class CanBoQuanLyHome extends javax.swing.JFrame {
     /**
      * Creates new form QuanLyKiTucXaHome
      */
-    public CanBoQuanLyHome( String phanLoai){
-        
-    }
-    public CanBoQuanLyHome() {
+    String ten,maCanBo;
+    public CanBoQuanLyHome(String ten, String maCanBo) {
         
         initComponents();
         setTitle("Quản lý kí túc xá");
         this.setLocationRelativeTo(null);
-       
+       tf_hoTen.setText(ten);
+       tf_maCanBo.setText(maCanBo);
+       this.ten=ten;
+       this.maCanBo=maCanBo;
     }
 
     /**
@@ -49,8 +50,8 @@ public class CanBoQuanLyHome extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        tf_hoTen = new javax.swing.JLabel();
+        tf_maCanBo = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -164,11 +165,11 @@ public class CanBoQuanLyHome extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel10.setText("Mã cán bộ:");
 
-        jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel11.setText("Nguyễn Trung Minh Hiếu");
+        tf_hoTen.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        tf_hoTen.setText("Nguyễn Trung Minh Hiếu");
 
-        jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel12.setText("111111111111111111111");
+        tf_maCanBo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        tf_maCanBo.setText("111111111111111111111");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -183,12 +184,12 @@ public class CanBoQuanLyHome extends javax.swing.JFrame {
                         .addGap(2, 2, 2)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tf_maCanBo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(366, 366, 366))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tf_hoTen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(350, 350, 350))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -199,11 +200,11 @@ public class CanBoQuanLyHome extends javax.swing.JFrame {
                         .addGap(47, 47, 47)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jLabel11))
+                            .addComponent(tf_hoTen))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(jLabel12)))
+                            .addComponent(tf_maCanBo)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -223,13 +224,13 @@ public class CanBoQuanLyHome extends javax.swing.JFrame {
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
         this.dispose();
-        SettingScreen a= new SettingScreen(1);
+        SettingScreen a= new SettingScreen(1,this.ten,this.maCanBo);
         a.setVisible(true);
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        QuanLyHopDongThuePhongScreen a= new QuanLyHopDongThuePhongScreen();
+        QuanLyHopDongThuePhongScreen a= new QuanLyHopDongThuePhongScreen(this.ten,this.maCanBo);
         a.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -265,7 +266,7 @@ public class CanBoQuanLyHome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CanBoQuanLyHome().setVisible(true);
+                new CanBoQuanLyHome("tesst","test").setVisible(true);
             }
         });
     }
@@ -276,8 +277,6 @@ public class CanBoQuanLyHome extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -289,5 +288,7 @@ public class CanBoQuanLyHome extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel tf_hoTen;
+    private javax.swing.JLabel tf_maCanBo;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,11 +5,17 @@
  */
 package quanlykitucxa;
 
+import DataBase.Connect;
+import Process.AccAdmin;
 import com.sun.prism.j2d.J2DPipeline;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
+import java.lang.NullPointerException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,12 +26,21 @@ public class CanBoDangKyScreen extends javax.swing.JFrame {
     /**
      * Creates new form CanBoDangKyScreen
      */
-    public CanBoDangKyScreen() {
-        initComponents();setTitle("Quản lý kí túc xá");
+    // Connect c = null;
+    private final AccAdmin a = new AccAdmin();
+
+    public CanBoDangKyScreen() throws SQLException {
+        initComponents();
+        setTitle("Quản lý kí túc xá");
         this.setLocationRelativeTo(null);
-        ButtonGroup grGioiTinh= new ButtonGroup();
+        ButtonGroup grGioiTinh = new ButtonGroup();
         grGioiTinh.add(rb_nu);
         grGioiTinh.add(rb_nam);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        dp_ngaySinh.setFormats(format);
+
+//        c = new Connect();
+//        c.ConnectSQL();
     }
 
     /**
@@ -239,53 +254,77 @@ public class CanBoDangKyScreen extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        int x= JOptionPane.showConfirmDialog(this   , "Bạn có chắc chắn muốn quay lại?","Thông báo", JOptionPane.YES_NO_OPTION);
-        if(x==0){
+        int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn quay lại?", "Thông báo", JOptionPane.YES_NO_OPTION);
+        if (x == 0) {
             this.dispose();
-        DangNhapScreen a = new DangNhapScreen();
-        a.setVisible(true);
+            DangNhapScreen a = new DangNhapScreen();
+            a.setVisible(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ;
         String hoTen = tf_hoTen.getText();
-        String maSV = tf_maCanBo.getText();
-        String matKhau = tf_matKhau.getText();
-
+        String maCB = tf_maCanBo.getText();
+        String matKhau = String.valueOf(tf_matKhau.getPassword());
+        String ngaySinh = null;
         int checkNgaySinh = 1;
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-            String d = sdf.format(dp_ngaySinh.getDate());
+            java.util.Date departDateD = dp_ngaySinh.getDate();
+            SimpleDateFormat oDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            ngaySinh = oDateFormat.format(departDateD);
+
         } catch (Exception e) {
             checkNgaySinh = 0;
         }
+//        String NgaySinh = ((JTextField) tfNgaysinh.getDateEditor().getUiComponent()).getText();
 
-        String nhapLai = tf_nhapLai.getText();
-        
+        String nhapLai = String.valueOf(tf_nhapLai.getPassword());
         String taiKhoan = tf_taiKhoan.getText();
-        if ( hoTen.equals("") || maSV.equals("") || matKhau.equals("")
-                || checkNgaySinh == 0 || nhapLai.equals("")  || taiKhoan.equals("")) {
+        String gioiTinh = "";
+        if (rb_nam.isSelected()) {
+            gioiTinh = "Nam";
+        } else {
+            gioiTinh = "Nữ";
+        }
+
+        //---------
+        if (hoTen.equals("") || maCB.equals("") || matKhau.equals("")
+                || checkNgaySinh == 0 || nhapLai.equals("") || taiKhoan.equals("")) {
             JOptionPane.showMessageDialog(this, "Cần nhập đủ tất cả thông tin!", "Thông báo", JOptionPane.ERROR_MESSAGE);
         } else if ((!rb_nam.isSelected()) && (!rb_nu.isSelected())) {
             JOptionPane.showMessageDialog(this, "Cần chọn giới tính!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
-        }  else if (!matKhau.equals(nhapLai)) {
+        } else if (!matKhau.equals(nhapLai)) {
             JOptionPane.showMessageDialog(this, "Nhập lại mật khẩu chưa trùng khớp! Mời nhập lại!", "Thông báo", JOptionPane.ERROR_MESSAGE);
             tf_nhapLai.setText("");
-        }  else if (taiKhoan.equals("admin01") || taiKhoan.equals("admin02")) {
+        } else if (taiKhoan.equals("admin01") || taiKhoan.equals("admin02")) {
             tf_taiKhoan.setText("");
             JOptionPane.showMessageDialog(this, "Tài khoản này đã có người sử dụng! Vui lòng đăng ký một tài khoản khác!", "Thông báo", JOptionPane.ERROR_MESSAGE);
         } else {
-            int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn đã điền đúng thông tin đăng ký?","Thông báo", JOptionPane.YES_NO_OPTION);
-            if (x == 0) {
-                
-                JOptionPane.showMessageDialog(this, "Đăng ký thành công!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
-                this.dispose();
-                DangNhapScreen a= new DangNhapScreen();
-                a.setVisible(true);
+            int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn đã điền đúng thông tin đăng ký?", "Thông báo", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                try {
+//                    System.out.println(taiKhoan);
+//                    System.out.println(matKhau);
+//                    System.out.println(hoTen);
+//                    System.out.println(gioiTinh);
+//                    System.out.println(ngaySinh);
+//                   
+                    a.InsertData(taiKhoan, matKhau, hoTen, gioiTinh, ngaySinh,maCB);
+                    JOptionPane.showMessageDialog(this, "Đăng ký thành công!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+                    this.dispose();
+                    DangNhapScreen a = new DangNhapScreen();
+                    a.setVisible(true);
+
+                } //                   
+                catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Đăng ký không thành công", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                    e.printStackTrace();
+                }
             }
         }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -318,7 +357,11 @@ public class CanBoDangKyScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CanBoDangKyScreen().setVisible(true);
+                try {
+                    new CanBoDangKyScreen().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(CanBoDangKyScreen.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -5,8 +5,13 @@
  */
 package quanlykitucxa;
 
+import Process.HopDong;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 
@@ -19,11 +24,13 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
     /**
      * Creates new form SinhVienDangKyScreen
      */
+    private final HopDong hd= new HopDong();
     public SinhVienDangKyScreen() {
         initComponents();
         setTitle("Quản lý kí túc xá");
         this.setLocationRelativeTo(null);
-        
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        dp_ngaySinh.setFormats(format);
         /* tf_diaChiThuongTru.setText("1");
         tf_email.setText("1");
         tf_hoten.setText("1");
@@ -36,9 +43,9 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         tf_soChungMinhThu.setText("1");
         tf_soDienThoai.setText("1");
         tf_taiKhoan.setText("1");*/
-        ButtonGroup bgroup = new ButtonGroup();
-        bgroup.add(rb_Nam);
-        bgroup.add(rb_Nu);
+        ButtonGroup grGioiTinh = new ButtonGroup();
+        grGioiTinh.add(rb_Nam);
+        grGioiTinh.add(rb_Nu);
         ButtonGroup grPhong = new ButtonGroup();
         grPhong.add(rb_phongCoBan);
         grPhong.add(rb_phongCLC);
@@ -430,10 +437,12 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         String maSV = tf_maSinhVien.getText();
         String matKhau = tf_matKhau.getText();
 
-        int checkNgaySinh = 1;
+        int checkNgaySinh = 1; String ngaySinh="";
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-            String d = sdf.format(dp_ngaySinh.getDate());
+            java.util.Date departDateD = dp_ngaySinh.getDate();
+            SimpleDateFormat oDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            ngaySinh = oDateFormat.format(departDateD);
+
         } catch (Exception e) {
             checkNgaySinh = 0;
         }
@@ -443,6 +452,14 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         String soCMT = tf_soChungMinhThu.getText();
         String soDT = tf_soDienThoai.getText();
         String taiKhoan = tf_taiKhoan.getText();
+        String gioiTinh="";
+        if(rb_Nam.isSelected()) gioiTinh="Nam";
+        else gioiTinh="Nữ";
+        String loai="";
+        if(rb_phongCLC.isSelected()) loai="chất lượng cao";
+        else if(rb_phongCoBan.isSelected()) loai="cơ bản";
+        else loai="tiêu chuẩn";
+        
         if (diaChiThuongTru.equals("") || email.equals("") || hoTen.equals("") || maSV.equals("") || matKhau.equals("")
                 || checkNgaySinh == 0 || nhapLai.equals("") || queQuan.equals("") || soCMT.equals("") || soDT.equals("") || taiKhoan.equals("")) {
             JOptionPane.showMessageDialog(this, "Cần nhập đủ tất cả thông tin!", "Thông báo", JOptionPane.ERROR_MESSAGE);
@@ -461,8 +478,20 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         } else {
             int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn đã điền đúng thông tin đăng ký?","Thông báo", JOptionPane.YES_NO_OPTION);
             if (x == 0) {
-
-                JOptionPane.showMessageDialog(this, "Đăng ký thành công! Vui lòng chờ điện thoại từ ký túc xá!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+                
+                try {
+                    ResultSet rs= hd.ShowDataTaiKhoan(taiKhoan);
+                    if(rs.next()){
+                        JOptionPane.showMessageDialog(null, "Tài khoản đã có người đăng ký!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                    }else{
+                         
+                        hd.InsertData(hoTen,maSV,ngaySinh,gioiTinh,queQuan,soCMT,diaChiThuongTru,soDT,loai,email,taiKhoan,matKhau,"chưa ký hợp đồng");
+                        JOptionPane.showMessageDialog(this, "Đăng ký thành công! Vui lòng chờ điện thoại từ ký túc xá!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+                    }
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(this, "Đăng ký thất bại!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                }
+                
             }
         }
 
