@@ -31,7 +31,7 @@ public class SinhVien {
         return cn.LoadData(sql);
     }
 
-    public ResultSet ShowSinhVienTheoTaiKhoan(String taiKhoan)  {
+    public ResultSet ShowSinhVienTheoTaiKhoan(String taiKhoan) {
         try {
             cn.ConnectSQL();
             String sql = "Select * from sinhvien where TaiKhoan='" + taiKhoan + "'";
@@ -43,19 +43,23 @@ public class SinhVien {
     }
 
     public void InsertData(String maSV, String hoTen, int gioiTinh, String soCMT, String ngaySinh, String queQuan,
-            String soDT, String email, String hocLuc, String loaiPhong, String taiKhoan, String matKhau)  {
+            String soDT, String email, String hocLuc, String loaiPhong, String taiKhoan, String matKhau) {
         try {
             cn.ConnectSQL();
-            
-            String sql = "INSERT INTO sinhvien values('" + maSV + "',N'" + hoTen + "','"+gioiTinh+"','"+soCMT+"','"+ngaySinh
-                    +"','"+queQuan+"','"+soDT+"','"+email+"','"+hocLuc+"',NULL, NULL, '"+loaiPhong+"',NULL, '"+taiKhoan+"','"+matKhau+"')";
+
+            String sql = "INSERT INTO sinhvien values('" + maSV + "',N'" + hoTen + "','" + gioiTinh + "','" + soCMT + "','" + ngaySinh
+                    + "','" + queQuan + "','" + soDT + "','" + email + "','" + hocLuc + "',NULL, NULL, '" + loaiPhong + "',NULL, '" + taiKhoan + "','" + matKhau + "')";
             cn.UpdateData(sql);
         } catch (SQLException ex) {
             Logger.getLogger(SinhVien.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Nhập sai mã sinh viên!", "Thông báo", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-    
-    
+/*
+    public void EditData(String maSV, String hoTen, int gioiTinh, String soCMT, String ngaySinh, String queQuan,
+            String soDT, String email, String hocLuc, String loaiPhong, String taiKhoan, String matKhau, String thoiGianBatDau, String thoiGianKetThuc) {
+        String sql = "UPDATE `sinhvien` SET `HoTen` =  '"+hoTen+"', `GioiTinh` = '"+gioiTinh+"', `SoCMND` = '"+soCMT+"', `NgaySinh` = '"+ngaySinh+"', `QueQuan` =  '"+queQuan+"', `SoDT` = '"+soDT+"', `Email` = '"+email+"', `HocLuc` = '"+hocLuc+"', `ThoiGianBatDauTuQuan` = '"+thoiG+"', `ThoiGianKetThucTuQuan` = '2020-06-10', `LoaiPhong` = 'CLC', `TenPhong` = '31', `TaiKhoan` = 'user01', `MatKhau` = '11' WHERE `sinhvien`.`MaSV` = '2020202020';
+        cn.UpdateData(sql);
+    }
+*/
 }

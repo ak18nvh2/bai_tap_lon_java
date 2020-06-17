@@ -5,6 +5,10 @@
  */
 package quanlykitucxa;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author hieuuu
@@ -229,10 +233,14 @@ public class CanBoQuanLyHome extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        DanhSachHopDongScreen a= new DanhSachHopDongScreen();
-        a.setVisible(true);
-        this.dispose();
+        try {
+            // TODO add your handling code here:
+            DanhSachHopDongScreen a= new DanhSachHopDongScreen();
+            a.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(CanBoQuanLyHome.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

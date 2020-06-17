@@ -6,11 +6,13 @@
 package quanlykitucxa;
 
 import Process.HopDong;
+import Process.Phong;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,9 +24,19 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
     /**
      * Creates new form DanhSachHopDongScreen
      */
+    private int demSua = 0;
+    private int chonBang = 1; //1 la danh sach hop dong, 2 la danh sach phong con trong
     private final HopDong hd = new HopDong();
+    private final Phong phong = new Phong();
     private boolean cothem = true;
     private final DefaultTableModel tableModel = new DefaultTableModel();
+
+    void setEdi(boolean bl) {
+        tf_maHD.setEditable(bl);
+        tf_maSV.setEditable(bl);
+        dp_ngayBatDau.setEditable(bl);
+        dp_ngayKetThuc.setEditable(bl);
+    }
 
     public void ShowData() throws SQLException {
         ResultSet rs = hd.ShowDanhSachHopDong();
@@ -43,11 +55,12 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
 
         }
     }
-    public void ClearData(){
-        int n= tableModel.getRowCount()-1;
-        for(int i=n;i>=0;i--){
+
+    public void ClearData() {
+        int n = tableModel.getRowCount() - 1;
+        for (int i = n; i >= 0; i--) {
             tableModel.removeRow(i);
-        }    
+        }
     }
 //    private void setNull(){
 //        this.tf_maLoai.setText("");
@@ -66,16 +79,17 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
 //        this.kluu.setEnabled(!a);
 //        this.thoat.setEnabled(a);
 //    }
+
     public DanhSachHopDongScreen() throws SQLException {
         initComponents();
-       
+
         setTitle("Quản lý kí túc xá");
         this.setLocationRelativeTo(null);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         dp_ngayBatDau.setFormats(format);
-      //  SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        //  SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         dp_ngayKetThuc.setFormats(format);
-        String []colsName={"Mã hợp đồng", "Thời gian bắt đầu","Thời gian kết thúc","Mã sinh viên"};
+        String[] colsName = {"Mã hợp đồng", "Thời gian bắt đầu", "Thời gian kết thúc", "Mã sinh viên"};
         tableModel.setColumnIdentifiers(colsName);
         jTable1.setModel(tableModel);
         ShowData();
@@ -83,6 +97,7 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
         tf_maSV.setEditable(false);
         dp_ngayBatDau.setEditable(false);
         dp_ngayKetThuc.setEditable(false);
+        setEdi(false);
     }
 
     /**
@@ -117,12 +132,13 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btn_hetHan = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btn_Sua = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         tf_maHD = new javax.swing.JTextField();
+        jButton10 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -137,7 +153,7 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Hợp đồng thuê phòng ký túc xá");
+        jLabel2.setText("Quản lý hợp đồng thuê phòng ký túc xá");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 20, 1040, 70);
 
@@ -183,7 +199,7 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(0, 460, 1036, 140);
+        jScrollPane1.setBounds(0, 530, 1036, 140);
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel6.setText("Ngày bắt đầu:");
@@ -201,15 +217,15 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
 
         jButton1.setText("Tìm kiếm theo mã sinh viên");
         getContentPane().add(jButton1);
-        jButton1.setBounds(30, 400, 210, 39);
+        jButton1.setBounds(30, 400, 320, 39);
 
         jButton2.setText("Tìm kiếm theo ngày bắt đầu");
         getContentPane().add(jButton2);
-        jButton2.setBounds(280, 400, 210, 39);
+        jButton2.setBounds(370, 400, 320, 39);
 
         jButton3.setText("Tìm kiếm theo ngày kết thúc");
         getContentPane().add(jButton3);
-        jButton3.setBounds(530, 400, 200, 40);
+        jButton3.setBounds(710, 400, 290, 40);
 
         jButton4.setText("Thông tin chi tiết của sinh viên");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -218,62 +234,171 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(760, 340, 228, 39);
+        jButton4.setBounds(710, 460, 290, 40);
 
-        jButton5.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jButton5.setText("Hiển thị danh sách hợp đồng sắp hết hạn");
-        getContentPane().add(jButton5);
-        jButton5.setBounds(760, 400, 230, 40);
+        btn_hetHan.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        btn_hetHan.setText("Hiển thị danh sách hợp đồng sắp hết hạn");
+        btn_hetHan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_hetHanActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_hetHan);
+        btn_hetHan.setBounds(370, 460, 320, 40);
 
         jButton6.setText("Thêm hợp đồng");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton6);
-        jButton6.setBounds(30, 340, 213, 39);
+        jButton6.setBounds(30, 340, 320, 39);
 
-        jButton7.setText("Sửa hợp đồng");
-        getContentPane().add(jButton7);
-        jButton7.setBounds(280, 340, 210, 39);
+        btn_Sua.setText("Sửa hợp đồng");
+        btn_Sua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_SuaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_Sua);
+        btn_Sua.setBounds(370, 340, 320, 39);
 
         jButton8.setText("Xóa hợp đồng");
         getContentPane().add(jButton8);
-        jButton8.setBounds(530, 340, 200, 39);
+        jButton8.setBounds(710, 340, 290, 39);
 
         jButton9.setText("Quay lại");
         getContentPane().add(jButton9);
-        jButton9.setBounds(480, 630, 73, 23);
+        jButton9.setBounds(480, 690, 73, 23);
         getContentPane().add(tf_maHD);
         tf_maHD.setBounds(90, 280, 157, 30);
 
-        setBounds(0, 0, 1052, 721);
+        jButton10.setText("Danh sách yêu cầu của sinh viên");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton10);
+        jButton10.setBounds(30, 460, 320, 40);
+
+        setBounds(0, 0, 1052, 778);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-         try{
-            int row= this.jTable1.getSelectedRow();
-            String maSV=  (String) jTable1.getModel().getValueAt(row, 0);
-            ResultSet rs= hd.ShowHopDongTheoMaHD(maSV);
-            if(rs.next()){
-                this.tf_maHD.setText(rs.getString("MaHD"));
-                this.tf_maSV.setText(rs.getString("MaSV"));
-                this.dp_ngayBatDau.setDate(rs.getDate("NgayBatDau"));
-                this.dp_ngayKetThuc.setDate(rs.getDate("NgayKetThuc"));
+        if (chonBang == 1) {
+            try {
+                int row = this.jTable1.getSelectedRow();
+                String maSV = (String) jTable1.getModel().getValueAt(row, 0);
+                ResultSet rs = hd.ShowHopDongTheoMaHD(maSV);
+                if (rs.next()) {
+                    this.tf_maHD.setText(rs.getString("MaHD"));
+                    this.tf_maSV.setText(rs.getString("MaSV"));
+                    this.dp_ngayBatDau.setDate(rs.getDate("NgayBatDau"));
+                    this.dp_ngayKetThuc.setDate(rs.getDate("NgayKetThuc"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else if (chonBang == 2) {
+            int row = this.jTable1.getSelectedRow();
+            String tenPhong = (String) jTable1.getModel().getValueAt(row, 1);
+            int x = JOptionPane.showConfirmDialog(this, "Thêm sinh viên vào phòng " + tenPhong + "?", "Thông báo", JOptionPane.YES_NO_OPTION);
+            if (x == 0) {
+                toast t = new toast("Thêm thành công!", 600, 650);
+
+                // call the method 
+                t.showtoast();
             }
         }
-        catch(SQLException e){
-            e.printStackTrace();
-        }
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try {
             // TODO add your handling code here:
-            ThongTinSinhVienScreen a= new ThongTinSinhVienScreen(tf_maSV.getText());
+            ThongTinSinhVienScreen a = new ThongTinSinhVienScreen(tf_maSV.getText());
             a.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(DanhSachHopDongScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        String[] colsName = {"Mã sinh viên", "Tên sinh viên", "Hình thức yêu cầu"};
+        tableModel.setColumnIdentifiers(colsName);
+        ClearData();
+
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        try {
+            // TODO add your handling code here:
+            chonBang = 2;
+            String[] colsName = {"Số phòng", "Tên phòng", "Loại phòng"};
+            tableModel.setColumnIdentifiers(colsName);
+            ClearData();
+            ResultSet rs = phong.ShowPhongConTrongTheoLoaiPhong("CB");
+            try {
+                while (rs.next()) {
+                    String row[] = new String[4];
+                    row[0] = rs.getString("SoPhong");
+                    row[1] = rs.getString("TenPhong");
+                    row[2] = rs.getString("LoaiPhong");
+                    tableModel.addRow(row);
+
+                }
+
+            } catch (SQLException e) {
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DanhSachHopDongScreen.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        jTable1.setModel(tableModel);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void btn_SuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SuaActionPerformed
+        // TODO add your handling code here:
+        demSua++;
+        if (demSua % 2 == 1) {
+            setEdi(true);
+            btn_Sua.setText("Lưu");
+        } else {
+            int x = JOptionPane.showConfirmDialog(this, "Bạn đã chắc chắn sửa đúng thông tin?", "Thông báo", JOptionPane.YES_NO_OPTION);
+            if (x == 0) {
+                toast t = new toast("Sửa thành công!", 600, 650);
+
+                // call the method 
+                btn_Sua.setText("Sửa hợp đồng");
+                t.showtoast();
+                setEdi(false);
+
+            }
+        }
+    }//GEN-LAST:event_btn_SuaActionPerformed
+    private int demHetHan=0;
+    private void btn_hetHanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hetHanActionPerformed
+        // TODO add your handling code here:
+        demHetHan++;
+        if(demHetHan%2==1){
+            btn_hetHan.setText("Gửi thông báo");
+            
+        }
+        else {
+            toast t = new toast("Gửi thành công!", 600, 650);
+
+                // call the method
+                btn_hetHan.setText("Hiển thị danh sách hợp đồng sắp hết hạn");
+                t.showtoast();
+                
+        }
+    }//GEN-LAST:event_btn_hetHanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -315,15 +440,16 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Sua;
+    private javax.swing.JButton btn_hetHan;
     private org.jdesktop.swingx.JXDatePicker dp_ngayBatDau;
     private org.jdesktop.swingx.JXDatePicker dp_ngayKetThuc;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
