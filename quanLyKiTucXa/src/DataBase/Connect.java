@@ -17,7 +17,7 @@ public class Connect {
     public void ConnectSQL() throws SQLException{
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            cnn= DriverManager.getConnection("jdbc:mysql://localhost:3306/ql_ktx", "root", "");
+            cnn= DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlykytucxa", "root", "");
         } catch (ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "Kết nối thất bạn!", "Thông báo", JOptionPane.ERROR_MESSAGE);        }
     }

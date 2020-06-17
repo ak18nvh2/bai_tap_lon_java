@@ -6,7 +6,7 @@
 package quanlykitucxa;
 
 import DataBase.Connect;
-import Process.AccAdmin;
+
 import com.sun.prism.j2d.J2DPipeline;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -27,7 +27,7 @@ public class CanBoDangKyScreen extends javax.swing.JFrame {
      * Creates new form CanBoDangKyScreen
      */
     // Connect c = null;
-    private final AccAdmin a = new AccAdmin();
+    
 
     public CanBoDangKyScreen() throws SQLException {
         initComponents();
@@ -264,7 +264,11 @@ public class CanBoDangKyScreen extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String hoTen = tf_hoTen.getText();
+         toast t = new toast("Đăng ký thành công!", 600, 650);
+
+                    // call the method 
+                    t.showtoast();
+     /*   String hoTen = tf_hoTen.getText();
         String maCB = tf_maCanBo.getText();
         String matKhau = String.valueOf(tf_matKhau.getPassword());
         String ngaySinh = null;
@@ -310,8 +314,12 @@ public class CanBoDangKyScreen extends javax.swing.JFrame {
 //                    System.out.println(gioiTinh);
 //                    System.out.println(ngaySinh);
 //                   
-                    a.InsertData(taiKhoan, matKhau, hoTen, gioiTinh, ngaySinh,maCB);
-                    JOptionPane.showMessageDialog(this, "Đăng ký thành công!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+                    a.InsertData(taiKhoan, matKhau, hoTen, gioiTinh, ngaySinh, maCB);
+                    //JOptionPane.showMessageDialog(this, "Đăng ký thành công!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+                    toast t = new toast("Đăng ký thành công!", 557, 689);
+
+                    // call the method 
+                    t.showtoast();
                     this.dispose();
                     DangNhapScreen a = new DangNhapScreen();
                     a.setVisible(true);
@@ -323,7 +331,7 @@ public class CanBoDangKyScreen extends javax.swing.JFrame {
                 }
             }
         }
-
+*/
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -230,7 +230,7 @@ public class CanBoQuanLyHome extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        QuanLyHopDongThuePhongScreen a= new QuanLyHopDongThuePhongScreen(this.ten,this.maCanBo);
+        DanhSachHopDongScreen a= new DanhSachHopDongScreen();
         a.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -266,7 +266,7 @@ public class CanBoQuanLyHome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CanBoQuanLyHome("tesst","test").setVisible(true);
+                new CanBoQuanLyHome("Nguyen Van A","012345").setVisible(true);
             }
         });
     }
