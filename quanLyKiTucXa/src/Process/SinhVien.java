@@ -43,12 +43,12 @@ public class SinhVien {
     }
 
     public void InsertData(String maSV, String hoTen, int gioiTinh, String soCMT, String ngaySinh, String queQuan,
-            String soDT, String email, String hocLuc, String loaiPhong, String taiKhoan, String matKhau) {
+            String soDT, String email, String hocLuc, String loaiPhong, String taiKhoan, String matKhau, String hanhKiem) {
         try {
             cn.ConnectSQL();
 
             String sql = "INSERT INTO sinhvien values('" + maSV + "',N'" + hoTen + "','" + gioiTinh + "','" + soCMT + "','" + ngaySinh
-                    + "','" + queQuan + "','" + soDT + "','" + email + "','" + hocLuc + "',NULL, NULL, '" + loaiPhong + "',NULL, '" + taiKhoan + "','" + matKhau + "')";
+                    + "','" + queQuan + "','" + soDT + "','" + email + "','" + hocLuc + "','"+hanhKiem+"', NULL, NULL, '" + loaiPhong + "',NULL, '" + taiKhoan + "','" + matKhau + "')";
             cn.UpdateData(sql);
         } catch (SQLException ex) {
             Logger.getLogger(SinhVien.class.getName()).log(Level.SEVERE, null, ex);

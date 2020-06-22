@@ -11,6 +11,7 @@ import Process.SinhVien;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,8 +27,9 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
     /**
      * Creates new form SinhVienDangKyScreen
      */
-    private final SinhVien sv= new SinhVien();
-    private final Phong ph= new Phong();
+    private final SinhVien sv = new SinhVien();
+    private final Phong ph = new Phong();
+
     public SinhVienDangKyScreen() {
         initComponents();
         setTitle("Quản lý kí túc xá");
@@ -53,15 +55,20 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         grPhong.add(rb_phongCoBan);
         grPhong.add(rb_phongCLC);
         grPhong.add(rb_phongTieuChuan);
-        ButtonGroup grHocLuc= new ButtonGroup();
+        ButtonGroup grHocLuc = new ButtonGroup();
         grHocLuc.add(rb_kha);
         grHocLuc.add(rb_gioi);
         grHocLuc.add(rb_yeu);
         grHocLuc.add(rb_tb);
+        ButtonGroup grHanhKiem = new ButtonGroup();
+        grHanhKiem.add(rb_hkKha);
+        grHanhKiem.add(rb_hkTB);
+        grHanhKiem.add(rb_hkTot);
+        grHanhKiem.add(rb_hkYeu);
+        rb_hkKha.setSelected(true);
         rb_Nam.setSelected(true);
         rb_phongCoBan.setSelected(true);
         rb_kha.setSelected(true);
-        
 
     }
 
@@ -117,6 +124,11 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         rb_tb = new javax.swing.JRadioButton();
         rb_kha = new javax.swing.JRadioButton();
         rb_gioi = new javax.swing.JRadioButton();
+        jLabel19 = new javax.swing.JLabel();
+        rb_hkYeu = new javax.swing.JRadioButton();
+        rb_hkTB = new javax.swing.JRadioButton();
+        rb_hkKha = new javax.swing.JRadioButton();
+        rb_hkTot = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -247,6 +259,21 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         rb_gioi.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         rb_gioi.setText("Giỏi");
 
+        jLabel19.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel19.setText("Hạnh kiểm:");
+
+        rb_hkYeu.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        rb_hkYeu.setText("Yếu");
+
+        rb_hkTB.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        rb_hkTB.setText("Trung bình");
+
+        rb_hkKha.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        rb_hkKha.setText("Khá");
+
+        rb_hkTot.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        rb_hkTot.setText("Tốt");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -275,9 +302,9 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel19)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(rb_hkYeu))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(cb_camKet, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -306,10 +333,6 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tf_soChungMinhThu, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -342,15 +365,31 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(tf_nhapLaiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel9)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(rb_yeu)
+                                                .addGap(27, 27, 27)
+                                                .addComponent(rb_tb)
+                                                .addGap(17, 17, 17)
+                                                .addComponent(rb_kha))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(rb_hkTB)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(rb_hkKha)))
                                         .addGap(18, 18, 18)
-                                        .addComponent(rb_yeu)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(rb_tb)
-                                        .addGap(17, 17, 17)
-                                        .addComponent(rb_kha)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(rb_gioi)))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(rb_hkTot)
+                                            .addComponent(rb_gioi)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 31, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -426,17 +465,24 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
                     .addComponent(rb_tb)
                     .addComponent(rb_kha)
                     .addComponent(rb_gioi))
-                .addGap(9, 9, 9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(rb_hkYeu)
+                    .addComponent(rb_hkTB)
+                    .addComponent(rb_hkKha)
+                    .addComponent(rb_hkTot))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cb_camKet)
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -450,13 +496,13 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         NoiQuyKyTucXa nq = new NoiQuyKyTucXa();
         nq.setVisible(true);
-        
+
         //JOptionPane.showMessageDialog(this, " Điều 1: HSSV có nguyện vọng ở nội trú phải làm đơn gửi  trung tâm Ký túc xá, hợp đồng thuê nhà ở và phải thực  hiện những cam kết ghi trong hợp đồng.  Điều 2: Giữ gìn an ninh, trật tự chung. Chấp hành nội quy giờ giấc học tập, sinh hoạt. Không tụ tập, tổ chức  bè phái, kích động, gây gổ, đánh nhau gây mất trật tự  trong Ký túc xá. Không ngồi, leo trèo, đi lại trên lan  can. Không vượt rào, trèo tường, ra khỏi ký túc xá.  Không thức khuya quá 23h30.  Điều 3: Không tự ý thay đổi chỗ ở, không tiếp khách  trong phòng. Bạn bè, người đến thăm tiếp đón tạo nơi  quy định, nghỉ lại qua đêm phải đăng ký, làm đơn bảo  lãnh đối với Trung tâm Ký túc xá.  Điều 4: Không leo trèo, hái hoa, bẻ cành, chặt phá cây,  ngồi chơi thêm thảm cỏ, hoa. Không đá bóng, đi, để xe  đạp, xe máy trong Ký túc xá. Không ngồi tự học, đi chơi  đôi nam, nữ nơi vắng vẻ trong đêm tối.  Điều 5: Không được uống rượu, bia trong Ký túc xá.  Không vận chuyển, tàng trữ, sử dụng và lôi kéo người  khác sử dụng các loại vũ khí, hung khí, chất cháy nổ,  các chất ma túy, tài liệu, băng đĩa có nội dung đồi  trụy, đánh bài, cờ bạc, mại dâm dưới bất kỳ hình thức  nào.  Điều 6: Có trách nhiệm giữ vệ sinh chung, thực hiện vệ  sinh hằng ngày, phòng ở sạch sẽ, gọn gàng, ngăn nắp. Đồ  dùng, tư trang cá nhân để đúng nơi quy định. Không viết, vẽ, dán giấy, tranh ảnh, đóng đinh lên tường, cửa. Giấy rác, đồ thải bỏ đúng nơi quy định.  Điều 7: Có trách nhiệm giữ gìn, bảo vệ tài sản cá nhân và tải sản trong khu nội trú. Không mang tài sản được  trang bị từ nơi này đến nơi khác. Nếu làm hư hỏng, mất  mát phải bồi thường theo quy định.  Điều 8: Chấp hành nghiêm chỉnh nội quy sử dụng cầu thang  máy, nhà ăn, quy định sử dụng điện, nước, internet.  Nghiêm cấm nấu ăn, tổ chức sinh nhật trong phòng ở với  bất kỳ hình thức nào.  Điều 9: Không có hành vi, tác phong ăn mặc thiếu văn hóa  gây ảnh hưởng tới môi trường sống. Ứng xử hòa nhã, lịch  sự, có văn hóa với bạn bè. Tôn trọng, lễ phép với Cán  bộ, Giáo viên, Công nhân viên trong Nhà trường.  Điều 10: Nếu vi phạm một trong những điều trên tùy theo  mức độ sẽ bị xử lý từ phê bình, khiển trách, cảnh cáo,  hủy hợp đồng thuê nhà ở nội trú, buộc thôi học, đề nghị  truy tố trước pháp luật.", "Nội quy ở ký túc xá", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn quay lại?","Thông báo", JOptionPane.YES_NO_OPTION);
+        int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn quay lại?", "Thông báo", JOptionPane.YES_NO_OPTION);
         if (x == 0) {
             this.dispose();
             DangNhapScreen a = new DangNhapScreen();
@@ -467,17 +513,37 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
 
-        
         String email = tf_email.getText();
         String hoTen = tf_hoten.getText();
         String maSV = tf_maSinhVien.getText();
         String matKhau = tf_matKhau.getText();
 
-        int checkNgaySinh = 1; String ngaySinh="";
+        int checkNgaySinh = 1;
+        String ngaySinh = "";
         try {
             java.util.Date departDateD = dp_ngaySinh.getDate();
             SimpleDateFormat oDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat ngay= new SimpleDateFormat("dd");
+            SimpleDateFormat thang= new SimpleDateFormat("MM");
+            SimpleDateFormat nam= new SimpleDateFormat("yyyy");
             ngaySinh = oDateFormat.format(departDateD);
+            Date date= new Date();
+            int namm= Integer.parseInt(nam.format(date));
+            int thangg= Integer.parseInt(thang.format(date));
+            int ngayy= Integer.parseInt(ngay.format(date));
+            System.out.println(namm+" "+thangg+" "+ngayy);
+            int nammC= Integer.parseInt(nam.format(departDateD));
+            int thanggC= Integer.parseInt(thang.format(departDateD));
+            int ngayyC= Integer.parseInt(ngay.format(departDateD));
+            
+            if(nammC > namm){
+                checkNgaySinh=0;
+            }else if(thanggC > thangg){
+                checkNgaySinh=0;
+            }else if(ngayyC > ngayy){
+                checkNgaySinh=0;
+            }
+            
 
         } catch (Exception e) {
             checkNgaySinh = 0;
@@ -488,60 +554,91 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         String soCMT = tf_soChungMinhThu.getText();
         String soDT = tf_soDienThoai.getText();
         String taiKhoan = tf_taiKhoan.getText();
-        int gioiTinh=0;
-        if(rb_Nam.isSelected()) gioiTinh=1;
-        
-        String loai="";
-        if(rb_phongCLC.isSelected()) loai="CLC";
-        else if(rb_phongCoBan.isSelected()) loai="CB";
-        else loai="TC";
-        
-        String hocLuc="";
-        if(rb_gioi.isSelected()) hocLuc="Giỏi";
-        else if(rb_kha.isSelected()) hocLuc="Khá";
-        else if(rb_tb.isSelected()) hocLuc="Trung bình";
-        else if(rb_yeu.isSelected()) hocLuc="Yếu";
-        
+        int gioiTinh = 0;
+        if (rb_Nam.isSelected()) {
+            gioiTinh = 1;
+        }
+
+        String loai = "";
+        if (rb_phongCLC.isSelected()) {
+            loai = "CLC";
+        } else if (rb_phongCoBan.isSelected()) {
+            loai = "CB";
+        } else {
+            loai = "TC";
+        }
+
+        String hocLuc = "";
+        if (rb_gioi.isSelected()) {
+            hocLuc = "Giỏi";
+        } else if (rb_kha.isSelected()) {
+            hocLuc = "Khá";
+        } else if (rb_tb.isSelected()) {
+            hocLuc = "Trung bình";
+        } else if (rb_yeu.isSelected()) {
+            hocLuc = "Yếu";
+        }
+
+        String hanhKiem = "";
+        if (rb_hkKha.isSelected()) {
+            hanhKiem = "Khá";
+        } else if (rb_hkTB.isSelected()) {
+            hanhKiem = "Trung bình";
+        } else if (rb_hkTot.isSelected()) {
+            hanhKiem = "Tốt";
+        } else if (rb_hkYeu.isSelected()) {
+            hanhKiem = "Yếu";
+        }
+
         if (email.equals("") || hoTen.equals("") || maSV.equals("") || matKhau.equals("")
-                || checkNgaySinh == 0 || nhapLai.equals("") || queQuan.equals("") || soCMT.equals("") || soDT.equals("") || taiKhoan.equals("")) {
+                || nhapLai.equals("") || queQuan.equals("") || soCMT.equals("") || soDT.equals("") || taiKhoan.equals("")) {
             JOptionPane.showMessageDialog(this, "Cần nhập đủ tất cả thông tin!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        } else if (checkNgaySinh == 0) {
+            JOptionPane.showMessageDialog(null, "Hãy chọn lại ngày sinh!", "Thông báo", JOptionPane.ERROR_MESSAGE);
         } else if ((!rb_Nam.isSelected()) && (!rb_Nu.isSelected())) {
             JOptionPane.showMessageDialog(this, "Cần chọn giới tính!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
         } else if (!rb_phongCLC.isSelected() && !rb_phongCoBan.isSelected() && !rb_phongTieuChuan.isSelected()) {
             JOptionPane.showMessageDialog(this, "Bạn chưa chọn loại phòng!", "Thông báo", JOptionPane.ERROR_MESSAGE);
-        } else if(!rb_gioi.isSelected() && !rb_kha.isSelected() && !rb_tb.isSelected() && !rb_yeu.isSelected()){
+        } else if (!rb_gioi.isSelected() && !rb_kha.isSelected() && !rb_tb.isSelected() && !rb_yeu.isSelected()) {
             JOptionPane.showMessageDialog(null, "Chưa chọn loại học lực!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        } else if (!rb_hkTot.isSelected() && !rb_hkKha.isSelected() && !rb_hkTB.isSelected() && !rb_hkYeu.isSelected()) {
+            JOptionPane.showMessageDialog(null, "Chưa chọn loại hạnh kiểm!", "Thông báo", JOptionPane.ERROR_MESSAGE);
         } else if (!matKhau.equals(nhapLai)) {
             JOptionPane.showMessageDialog(this, "Nhập lại mật khẩu chưa trùng khớp! Mời nhập lại!", "Thông báo", JOptionPane.ERROR_MESSAGE);
             tf_nhapLaiMatKhau.setText("");
         } else if (!cb_camKet.isSelected()) {
             JOptionPane.showMessageDialog(this, "Cần chấp nhận nội quy của ký túc xá!", "Thông báo", JOptionPane.ERROR_MESSAGE);
-        }  else {
-            int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn đã điền đúng thông tin đăng ký?","Thông báo", JOptionPane.YES_NO_OPTION);
+        } else {
+            int x = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn đã điền đúng thông tin đăng ký?", "Thông báo", JOptionPane.YES_NO_OPTION);
             if (x == 0) {
-                
+
                 try {
-                    ResultSet rs= sv.ShowSinhVienTheoTaiKhoan(taiKhoan);
-                    if(rs.next()){
+                    ResultSet rs = sv.ShowSinhVienTheoTaiKhoan(taiKhoan);
+                    if (rs.next()) {
                         JOptionPane.showMessageDialog(null, "Tài khoản đã có người đăng ký!", "Thông báo", JOptionPane.ERROR_MESSAGE);
-                    }else{
-                        ResultSet rs1= ph.ShowPhongConTrongTheoLoaiPhong(loai);
-                        if(rs1.next()){
-                                
-                                sv.InsertData( maSV,  hoTen,  gioiTinh,  soCMT,  ngaySinh,  queQuan,
-             soDT,  email, hocLuc, loai,  taiKhoan,  matKhau);
+                    } else {
+                        ResultSet rs1 = ph.ShowPhongConTrongTheoLoaiPhong(loai);
+                        if (rs1.next()) {
+
+                            ResultSet rs2 = sv.ShowSinhVienTheoMaSV(maSV);
+                            if (rs2.next()) {
+                                JOptionPane.showMessageDialog(null, "Đã tồn tại mã sinh viên này!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                            } else {
+                                sv.InsertData(maSV, hoTen, gioiTinh, soCMT, ngaySinh, queQuan,
+                                        soDT, email, hocLuc, loai, taiKhoan, matKhau, hanhKiem);
                                 JOptionPane.showMessageDialog(this, "Đăng ký thành công! Vui lòng chờ điện thoại từ ký túc xá!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+                            }
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Loại phòng " + loai + " đã hết phòng!", "Thông báo", JOptionPane.ERROR_MESSAGE);
                         }
-                        else {
-                            JOptionPane.showMessageDialog(null, "Loại phòng "+loai+" đã hết phòng!", "Thông báo", JOptionPane.ERROR_MESSAGE);
-                        }
-                        
+
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                     JOptionPane.showMessageDialog(this, "Đăng ký thất bại!", "Thông báo", JOptionPane.ERROR_MESSAGE);
                 }
-                
+
             }
         }
 
@@ -550,12 +647,12 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
 
     private void rb_NamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_NamActionPerformed
         // TODO add your handling code here:
-        System.out.println("Chọn nam");
+
     }//GEN-LAST:event_rb_NamActionPerformed
 
     private void rb_NuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_NuActionPerformed
         // TODO add your handling code here:
-        System.out.println("Chọn nữ");
+
     }//GEN-LAST:event_rb_NuActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -572,16 +669,16 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
                     + "Giá phòng<br><br>  \n"
                     + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 1	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 2	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 3<br><br>\n"
                     + "4 người	&nbsp;&nbsp;&nbsp;&nbsp;550.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;550.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;450.000/SV/tháng<br> \n"
-                    + "6 người	&nbsp;&nbsp;&nbsp;&nbsp;367.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;367.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;300.000/SV/tháng</html>", "/quanlykitucxa/images/clc1.png","/quanlykitucxa/images/clc2.png","/quanlykitucxa/images/clc3.png","/quanlykitucxa/images/clc4.png");
+                    + "6 người	&nbsp;&nbsp;&nbsp;&nbsp;367.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;367.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;300.000/SV/tháng</html>", "/quanlykitucxa/images/clc1.png", "/quanlykitucxa/images/clc2.png", "/quanlykitucxa/images/clc3.png", "/quanlykitucxa/images/clc4.png");
             a.setVisible(true);
         } else if (x == 1) {
-           // this.dispose();
+            // this.dispose();
             LoaiPhongScreen a = new LoaiPhongScreen("PHÒNG CƠ BẢN 4-6 GIƯỜNG", "<html>Trang thiết bị: tủ cá nhân, giường tầng.<br><br> \n"
                     + "Công trình phụ khép kín.<br><br>  \n"
                     + "Giá phòng<br><br>  \n"
                     + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 1	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 2	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 3<br><br>\n"
                     + "4 người	&nbsp;&nbsp;&nbsp;&nbsp;330.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;300.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;248.000/SV/tháng<br> \n"
-                    + "6 người	&nbsp;&nbsp;&nbsp;&nbsp;220.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;200.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;165.000/SV/tháng</html>", "/quanlykitucxa/images/coBan3.png","/quanlykitucxa/images/coBan2.png","/quanlykitucxa/images/coBan1.png","/quanlykitucxa/images/coBan4.png");
+                    + "6 người	&nbsp;&nbsp;&nbsp;&nbsp;220.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;200.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;165.000/SV/tháng</html>", "/quanlykitucxa/images/coBan3.png", "/quanlykitucxa/images/coBan2.png", "/quanlykitucxa/images/coBan1.png", "/quanlykitucxa/images/coBan4.png");
             a.setVisible(true);
         } else if (x == 0) {
             //this.dispose();
@@ -590,7 +687,7 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
                     + "Giá phòng<br><br>  \n"
                     + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 1	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 2	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 3<br><br>\n"
                     + "4 người	&nbsp;&nbsp;&nbsp;&nbsp;420.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;375.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;330.000/SV/tháng<br> \n"
-                    + "6 người	&nbsp;&nbsp;&nbsp;&nbsp;280.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;250.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;220.000/SV/tháng</html>", "/quanlykitucxa/images/tc2.png","/quanlykitucxa/images/tc1.png","/quanlykitucxa/images/tc4.png","/quanlykitucxa/images/tc3.png");
+                    + "6 người	&nbsp;&nbsp;&nbsp;&nbsp;280.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;250.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;220.000/SV/tháng</html>", "/quanlykitucxa/images/tc2.png", "/quanlykitucxa/images/tc1.png", "/quanlykitucxa/images/tc4.png", "/quanlykitucxa/images/tc3.png");
             a.setVisible(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -648,6 +745,7 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -659,6 +757,10 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
     private javax.swing.JRadioButton rb_Nam;
     private javax.swing.JRadioButton rb_Nu;
     private javax.swing.JRadioButton rb_gioi;
+    private javax.swing.JRadioButton rb_hkKha;
+    private javax.swing.JRadioButton rb_hkTB;
+    private javax.swing.JRadioButton rb_hkTot;
+    private javax.swing.JRadioButton rb_hkYeu;
     private javax.swing.JRadioButton rb_kha;
     private javax.swing.JRadioButton rb_phongCLC;
     private javax.swing.JRadioButton rb_phongCoBan;

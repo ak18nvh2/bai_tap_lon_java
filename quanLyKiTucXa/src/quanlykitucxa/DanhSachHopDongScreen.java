@@ -265,6 +265,11 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
         btn_Sua.setBounds(370, 340, 320, 39);
 
         jButton8.setText("Xóa hợp đồng");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton8);
         jButton8.setBounds(710, 340, 290, 39);
 
@@ -361,6 +366,13 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
 
         }
         jTable1.setModel(tableModel);
+       int x= JOptionPane.showConfirmDialog(this, "Đồng ý thêm hợp đồng?", "Thông báo", JOptionPane.YES_NO_OPTION);
+       toast t = new toast("Thêm thành công!", 600, 650);
+
+                // call the method 
+               
+                t.showtoast();
+                //setEdi(false);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void btn_SuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SuaActionPerformed
@@ -399,6 +411,21 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
                 
         }
     }//GEN-LAST:event_btn_hetHanActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        int x= JOptionPane.showConfirmDialog(this, "Đồng ý xóa hợp đồng?", "Thông báo", JOptionPane.YES_NO_OPTION);
+        if(x==0){
+            toast t = new toast("Xóa thành công!", 600, 650);
+
+                // call the method 
+               
+                t.showtoast();
+        }
+       
+                //setEdi(false);
+                   
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
