@@ -6,6 +6,8 @@
 package Process;
 import DataBase.Connect;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author hieuuu
@@ -26,6 +28,16 @@ public class HopDong {
         cn.ConnectSQL();
         String sql="SELECT * FROM hopdong WHERE MaHD='"+maHD+"'";
         return cn.LoadData(sql);
+    }
+    public ResultSet DemSoLuongHopDong(){
+        try {
+            cn.ConnectSQL();
+            String sql= "SELECT COUNT(*) AS \"Tong\" FROM `hopdong`";
+            return cn.LoadData(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(SinhVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
 }

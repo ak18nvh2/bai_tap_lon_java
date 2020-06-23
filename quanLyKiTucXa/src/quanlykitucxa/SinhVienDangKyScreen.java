@@ -301,10 +301,6 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rb_hkYeu))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(cb_camKet, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -365,7 +361,7 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(tf_nhapLaiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel9)
                                                 .addGap(18, 18, 18)
@@ -375,13 +371,17 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
                                                 .addGap(17, 17, 17)
                                                 .addComponent(rb_kha))
                                             .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel19)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(rb_hkYeu)
+                                                .addGap(18, 18, 18)
                                                 .addComponent(rb_hkTB)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(rb_hkKha)))
                                         .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(rb_hkTot)
-                                            .addComponent(rb_gioi)))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(rb_gioi)
+                                            .addComponent(rb_hkTot)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -523,27 +523,30 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
         try {
             java.util.Date departDateD = dp_ngaySinh.getDate();
             SimpleDateFormat oDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            SimpleDateFormat ngay= new SimpleDateFormat("dd");
-            SimpleDateFormat thang= new SimpleDateFormat("MM");
-            SimpleDateFormat nam= new SimpleDateFormat("yyyy");
+            SimpleDateFormat ngay = new SimpleDateFormat("dd");
+            SimpleDateFormat thang = new SimpleDateFormat("MM");
+            SimpleDateFormat nam = new SimpleDateFormat("yyyy");
             ngaySinh = oDateFormat.format(departDateD);
-            Date date= new Date();
-            int namm= Integer.parseInt(nam.format(date));
-            int thangg= Integer.parseInt(thang.format(date));
-            int ngayy= Integer.parseInt(ngay.format(date));
-            System.out.println(namm+" "+thangg+" "+ngayy);
-            int nammC= Integer.parseInt(nam.format(departDateD));
-            int thanggC= Integer.parseInt(thang.format(departDateD));
-            int ngayyC= Integer.parseInt(ngay.format(departDateD));
-            
-            if(nammC > namm){
-                checkNgaySinh=0;
-            }else if(thanggC > thangg){
-                checkNgaySinh=0;
-            }else if(ngayyC > ngayy){
-                checkNgaySinh=0;
+            Date date = new Date();
+            int namm = Integer.parseInt(nam.format(date));
+            int thangg = Integer.parseInt(thang.format(date));
+            int ngayy = Integer.parseInt(ngay.format(date));
+            System.out.println(namm + " " + thangg + " " + ngayy);
+            int nammC = Integer.parseInt(nam.format(departDateD));
+            int thanggC = Integer.parseInt(thang.format(departDateD));
+            int ngayyC = Integer.parseInt(ngay.format(departDateD));
+
+            if (nammC > namm) {
+                checkNgaySinh = 0;
+            } else if (nammC == namm) {
+                if (thanggC > thangg) {
+                    checkNgaySinh = 0;
+                } else if (thanggC == thangg) {
+                    if (ngayyC > ngayy) {
+                        checkNgaySinh = 0;
+                    }
+                }
             }
-            
 
         } catch (Exception e) {
             checkNgaySinh = 0;
@@ -624,9 +627,16 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
                             if (rs2.next()) {
                                 JOptionPane.showMessageDialog(null, "Đã tồn tại mã sinh viên này!", "Thông báo", JOptionPane.ERROR_MESSAGE);
                             } else {
-                                sv.InsertData(maSV, hoTen, gioiTinh, soCMT, ngaySinh, queQuan,
-                                        soDT, email, hocLuc, loai, taiKhoan, matKhau, hanhKiem);
-                                JOptionPane.showMessageDialog(this, "Đăng ký thành công! Vui lòng chờ điện thoại từ ký túc xá!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+
+                                ResultSet rs3 = sv.ShowSinhVienTheoSoCMT(soCMT);
+                                if (rs3.next()) {
+                                    JOptionPane.showMessageDialog(null, "Đã tồn tại số chứng minh thư này!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                                } else {
+                                    sv.InsertData(maSV, hoTen, gioiTinh, soCMT, ngaySinh, queQuan,
+                                            soDT, email, hocLuc, loai, taiKhoan, matKhau, hanhKiem, 0, 0);
+                                    JOptionPane.showMessageDialog(this, "Đăng ký thành công! Vui lòng chờ điện thoại từ ký túc xá!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+
+                                }
                             }
 
                         } else {
@@ -664,30 +674,33 @@ public class SinhVienDangKyScreen extends javax.swing.JFrame {
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
         if (x == 2) {
             //this.dispose();
-            LoaiPhongScreen a = new LoaiPhongScreen("PHÒNG CHẤT LƯỢNG CAO 4-6 GIƯỜNG", "<html>Trang thiết bị: tủ cá nhân, giường tầng.<br><br> \n"
+            LoaiPhongScreen a = new LoaiPhongScreen("PHÒNG CHẤT LƯỢNG CAO 4-6 GIƯỜNG", "<html>Trang thiết bị: Bình nóng lạnh, điều hòa, tủ cá nhân, giường tầng.<br><br> \n"
                     + "Công trình phụ khép kín.<br><br>  \n"
-                    + "Giá phòng<br><br>  \n"
-                    + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 1	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 2	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 3<br><br>\n"
-                    + "4 người	&nbsp;&nbsp;&nbsp;&nbsp;550.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;550.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;450.000/SV/tháng<br> \n"
-                    + "6 người	&nbsp;&nbsp;&nbsp;&nbsp;367.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;367.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;300.000/SV/tháng</html>", "/quanlykitucxa/images/clc1.png", "/quanlykitucxa/images/clc2.png", "/quanlykitucxa/images/clc3.png", "/quanlykitucxa/images/clc4.png");
+                    + "Giá phòng: <br><br>550.000/SV/tháng  \n",
+                    
+                  //  + "4 người	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;550.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;450.000/SV/tháng<br> \n"
+                  //  + "6 người	&nbsp;&nbsp;&nbsp;&nbsp;367.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;367.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;300.000/SV/tháng</html>",
+                    "/quanlykitucxa/images/clc1.png", "/quanlykitucxa/images/clc2.png", "/quanlykitucxa/images/clc3.png", "/quanlykitucxa/images/clc4.png");
             a.setVisible(true);
         } else if (x == 1) {
             // this.dispose();
             LoaiPhongScreen a = new LoaiPhongScreen("PHÒNG CƠ BẢN 4-6 GIƯỜNG", "<html>Trang thiết bị: tủ cá nhân, giường tầng.<br><br> \n"
                     + "Công trình phụ khép kín.<br><br>  \n"
-                    + "Giá phòng<br><br>  \n"
-                    + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 1	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 2	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 3<br><br>\n"
-                    + "4 người	&nbsp;&nbsp;&nbsp;&nbsp;330.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;300.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;248.000/SV/tháng<br> \n"
-                    + "6 người	&nbsp;&nbsp;&nbsp;&nbsp;220.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;200.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;165.000/SV/tháng</html>", "/quanlykitucxa/images/coBan3.png", "/quanlykitucxa/images/coBan2.png", "/quanlykitucxa/images/coBan1.png", "/quanlykitucxa/images/coBan4.png");
+                    + "Giá phòng: <br><br>330.000/SV/tháng  \n",
+                   // + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 1	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 2	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 3<br><br>\n"
+                   // + "4 người	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;300.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;248.000/SV/tháng<br> \n"
+                   // + "6 người	&nbsp;&nbsp;&nbsp;&nbsp;220.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;200.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;165.000/SV/tháng</html>",
+                    "/quanlykitucxa/images/coBan3.png", "/quanlykitucxa/images/coBan2.png", "/quanlykitucxa/images/coBan1.png", "/quanlykitucxa/images/coBan4.png");
             a.setVisible(true);
         } else if (x == 0) {
             //this.dispose();
             LoaiPhongScreen a = new LoaiPhongScreen("PHÒNG TIÊU CHUẨN 4-6 GIƯỜNG", "<html>Trang thiết bị: Bình nóng lạnh, tủ cá nhân, giường tầng.<br><br> \n"
                     + "Công trình phụ khép kín.<br><br>  \n"
-                    + "Giá phòng<br><br>  \n"
-                    + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 1	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 2	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 3<br><br>\n"
-                    + "4 người	&nbsp;&nbsp;&nbsp;&nbsp;420.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;375.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;330.000/SV/tháng<br> \n"
-                    + "6 người	&nbsp;&nbsp;&nbsp;&nbsp;280.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;250.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;220.000/SV/tháng</html>", "/quanlykitucxa/images/tc2.png", "/quanlykitucxa/images/tc1.png", "/quanlykitucxa/images/tc4.png", "/quanlykitucxa/images/tc3.png");
+                    + "Giá phòng: <br><br>420.000/SV/tháng  \n",
+                  //  + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 1	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 2	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cơ sở 3<br><br>\n"
+                   // + "4 người	&nbsp;&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;&nbsp;375.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;330.000/SV/tháng<br> \n"
+                   // + "6 người	&nbsp;&nbsp;&nbsp;&nbsp;280.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;250.000/SV/tháng	&nbsp;&nbsp;&nbsp;&nbsp;220.000/SV/tháng</html>",
+                    "/quanlykitucxa/images/tc2.png", "/quanlykitucxa/images/tc1.png", "/quanlykitucxa/images/tc4.png", "/quanlykitucxa/images/tc3.png");
             a.setVisible(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed

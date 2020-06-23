@@ -128,9 +128,6 @@ public class DangNhapScreen extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String[] options = {"Sinh viên", "Cán bộ quản lý"};
-        //Integer[] options = {1, 3, 5, 7, 9, 11};
-        //Double[] options = {3.141, 1.618};
-        //Character[] options = {'a', 'b', 'c', 'd'};
         int x = JOptionPane.showOptionDialog(null, "Bạn là Sinh viên hay Cán bộ quản lý?",
                 "Thông báo",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
