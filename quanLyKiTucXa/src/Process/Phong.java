@@ -27,7 +27,7 @@ public class Phong {
         String sql="Select * from phong where LoaiPhong='"+loaiPhong+"' and SoNguoiToiDa > SoNguoiHienCo";
         return cn.LoadData(sql);
     }
-    public void TangThanhVienTrongPhong(int tenPhong) throws SQLException{
+    public void TangThanhVienTrongPhong(String tenPhong) throws SQLException{
         cn.ConnectSQL();
         String sql="UPDATE `phong` SET `SoNguoiHienCo` = SoNguoiHienCo+1 WHERE `phong`.`TenPhong` = "+tenPhong;
         cn.UpdateData(sql);

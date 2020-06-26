@@ -95,6 +95,7 @@ public class ThongTinSinhVienScreen extends javax.swing.JFrame {
             
         }
     }
+    private int noiDen;
     public ThongTinSinhVienScreen(String maSV, int noiDen) throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -104,6 +105,7 @@ public class ThongTinSinhVienScreen extends javax.swing.JFrame {
         dp_bdau.setFormats(format);
         dp_kthuc.setFormats(format);
         this.maSV=maSV;
+        this.noiDen=noiDen;
         if(noiDen==1)
             this.setEdi(false);
         else 
@@ -457,6 +459,11 @@ public class ThongTinSinhVienScreen extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
             // TODO add your handling code here:
+            if(noiDen==3){
+                SinhVienHome a= new SinhVienHome(tf_taiKhoan.getText());
+                this.dispose();
+                a.setVisible(true);
+            }
             this.dispose();
             
 //        QuanLyHopDongThuePhongScreen a= new QuanLyHopDongThuePhongScreen(this.hoTen, this.ma);

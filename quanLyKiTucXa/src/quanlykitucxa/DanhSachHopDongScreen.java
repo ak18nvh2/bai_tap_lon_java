@@ -10,6 +10,7 @@ import Process.Phong;
 import Process.SinhVien;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -152,6 +153,33 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
             Logger.getLogger(DanhSachHopDongScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    private int tinhTrangDangKy;
+
+    public DanhSachHopDongScreen(int check) {
+        initComponents();
+
+        setTitle("Quản lý kí túc xá");
+        this.setLocationRelativeTo(null);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        dp_ngayBatDau.setFormats(format);
+        this.tinhTrangDangKy = tinhTrangDangKy;
+        //  SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        dp_ngayKetThuc.setFormats(format);
+        tf_maHD.setEditable(false);
+        tf_maSV.setEditable(false);
+        dp_ngayBatDau.setEditable(false);
+        dp_ngayKetThuc.setEditable(false);
+        setEdi(false);
+        setTenNutTatCaHopDong();
+        setTenNutHopDongSapHetHan();
+        setTenNutDanhSachYeuCauDangKy();
+        setTenNutYeuCauGiaHan();
+        if (check == 1) {
+            btn_danhSachYeuCauDangKyActionPerformed();
+        } else if (check == 4) {
+            btn_yeuCauGiaHanActionPerformed();
+        }
+    }
 
     public DanhSachHopDongScreen() throws SQLException {
         initComponents();
@@ -160,6 +188,7 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         dp_ngayBatDau.setFormats(format);
+        this.tinhTrangDangKy = tinhTrangDangKy;
         //  SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         dp_ngayKetThuc.setFormats(format);
         tf_maHD.setEditable(false);
@@ -300,6 +329,13 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
         });
         getContentPane().add(btn_yeuCauGiaHan);
         btn_yeuCauGiaHan.setBounds(370, 370, 320, 39);
+
+        btn_chuaBiet.setText("Gửi thông báo");
+        btn_chuaBiet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_chuaBietActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn_chuaBiet);
         btn_chuaBiet.setBounds(710, 420, 290, 40);
 
@@ -330,6 +366,8 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
         getContentPane().add(btn_timTheoMSV);
         btn_timTheoMSV.setBounds(30, 420, 320, 39);
 
+        btn_chuaCo.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        btn_chuaCo.setText("Tìm hợp đồng trong khoảng từ ngày bắt đầu đến ngày kết thúc");
         btn_chuaCo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_chuaCoActionPerformed(evt);
@@ -348,6 +386,11 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
         btn_xoaHD.setBounds(710, 370, 290, 39);
 
         jButton9.setText("Quay lại");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton9);
         jButton9.setBounds(480, 670, 90, 23);
         getContentPane().add(tf_maHD);
@@ -367,7 +410,7 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        
+
         if (loaiBang == 1 || loaiBang == 4) {
             int row = this.jTable1.getSelectedRow();
             String maSV = (String) jTable1.getModel().getValueAt(row, 1);
@@ -396,11 +439,19 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
                 try {
                     ThongTinSinhVienScreen a = new ThongTinSinhVienScreen(maSV, 2);
                     a.setVisible(true);
+
                 } catch (SQLException ex) {
                     Logger.getLogger(DanhSachHopDongScreen.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } else if (x == 1){
-                JOptionPane.showMessageDialog(this, "hợp đồng", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+            } else if (x == 1) {
+                try {
+                    ThongTinChiTietHopDongScreen a = new ThongTinChiTietHopDongScreen(maSV, 1);
+                    a.setVisible(true);
+                } catch (ParseException ex) {
+                    Logger.getLogger(DanhSachHopDongScreen.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(DanhSachHopDongScreen.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
 
@@ -409,6 +460,8 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
 
     private void btn_tatCaHopDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tatCaHopDongActionPerformed
         loaiBang = 2;
+        btn_chuaBiet.setEnabled(false);
+        btn_chuaCo.setEnabled(true);
         try {
             ResultSet rs1 = hd.ShowDanhSachHopDong();
             DefaultTableModel tableModel = new DefaultTableModel();
@@ -430,10 +483,15 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(DanhSachHopDongScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
+        btn_xoaHD.setEnabled(false);
+        btn_kyHD.setEnabled(false);
+        btn_timTheoMSV.setEnabled(true);
     }//GEN-LAST:event_btn_tatCaHopDongActionPerformed
 
     private void btn_danhSachYeuCauDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_danhSachYeuCauDangKyActionPerformed
         loaiBang = 1;
+        btn_chuaBiet.setEnabled(false);
+        btn_chuaCo.setEnabled(false);
         try {
             // TODO add your handling code here:
             ResultSet rs1 = sv.ShowSinhVienChuaKyHopDong();
@@ -453,35 +511,38 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(DanhSachHopDongScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
+        btn_xoaHD.setEnabled(false);
+        btn_kyHD.setEnabled(true);
+        btn_timTheoMSV.setEnabled(true);
 
     }//GEN-LAST:event_btn_danhSachYeuCauDangKyActionPerformed
 
     private void btn_timTheoMSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_timTheoMSVActionPerformed
 
         // TODO add your handling code here:
-        if (loaiBang == -1) {
-            JOptionPane.showMessageDialog(this, "Chưa chọn loại danh sách muốn xem!", "Thông báo", JOptionPane.ERROR_MESSAGE);
-        }
         if (loaiBang == 1) {
 
             tf_maSV.setEditable(true);
-            btn_kyHD.setText("Tìm");
+            btn_timTheoMSV.setText("Tìm");
             if (tf_maSV.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Hãy nhập mã sinh viên cần tìm!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
             } else {
                 try {
                     // TODO add your handling code here:
-                    ResultSet rs1 = sv.ShowSinhVienTheoMaSV(tf_maSV.getText());
+                    ResultSet rs1 = sv.ShowSinhVienChuaKyHopDong();
                     DefaultTableModel tableModel = new DefaultTableModel();
                     String colsName[] = {"STT", "Mã sinh viên", "Tên sinh viên"};
                     tableModel.setColumnIdentifiers(colsName);
                     int dem = 0;
                     while (rs1.next()) {
-                        String[] row = new String[3];
-                        row[0] = ++dem + "";
-                        row[1] = rs1.getString("MaSV");
-                        row[2] = rs1.getString("HoTen");
-                        tableModel.addRow(row);
+                        if (rs1.getString("MaSV").equals(tf_maSV.getText())) {
+                            String[] row = new String[3];
+                            row[0] = ++dem + "";
+                            row[1] = rs1.getString("MaSV");
+                            row[2] = rs1.getString("HoTen");
+                            tableModel.addRow(row);
+                        }
+
                     }
 
                     jTable1.setModel(tableModel);
@@ -491,49 +552,193 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
                 int x = JOptionPane.showConfirmDialog(this, "Bạn còn muốn tiếp tục tìm kiếm thông tin?", "Thông báo", JOptionPane.YES_NO_OPTION);
                 if (x == 1) {
                     tf_maSV.setEditable(false);
-                    btn_kyHD.setText("Tìm kiếm theo mã sinh viên");
+                    btn_timTheoMSV.setText("Tìm kiếm theo mã sinh viên");
                 }
             }
 
+        } else if (loaiBang == 2 ) {
+            tf_maSV.setEditable(true);
+            btn_timTheoMSV.setText("Tìm");
+            if (tf_maSV.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Hãy nhập mã sinh viên cần tìm!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+            } else {
+                try {
+                    ResultSet rs1 = hd.ShowHopDongTheoMaSV(tf_maSV.getText());
+                    DefaultTableModel tableModel = new DefaultTableModel();
+                    String colsName[] = {"STT", "Mã hợp đồng", "Mã sinh viên", "Ngày bắt đầu", "Ngày kết thúc"};
+                    tableModel.setColumnIdentifiers(colsName);
+                    int dem = 0;
+                    while (rs1.next()) {
+
+                        String row[] = new String[5];
+                        row[0] = ++dem + "";
+                        row[1] = rs1.getString("MaHD");
+                        row[3] = rs1.getDate("NgayBatDau").toString();
+                        row[4] = rs1.getDate("NgayKetThuc").toString();
+                        row[2] = rs1.getString("MaSV");
+                        tableModel.addRow(row);
+
+                    }
+                    jTable1.setModel(tableModel);
+                } catch (SQLException ex) {
+                    Logger.getLogger(DanhSachHopDongScreen.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                int x = JOptionPane.showConfirmDialog(this, "Bạn còn muốn tiếp tục tìm kiếm thông tin?", "Thông báo", JOptionPane.YES_NO_OPTION);
+                if (x == 1) {
+                    tf_maSV.setEditable(false);
+                    btn_timTheoMSV.setText("Tìm kiếm theo mã sinh viên");
+                }
+            }
+        } else if (loaiBang == 4) {
+            tf_maSV.setEditable(true);
+            btn_timTheoMSV.setText("Tìm");
+            if (tf_maSV.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Hãy nhập mã sinh viên cần tìm!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+            } else {
+                try {
+                    // TODO add your handling code here:
+                    ResultSet rs1 = sv.ShowSinhVienYeuCauGiaHan();
+                    DefaultTableModel tableModel = new DefaultTableModel();
+                    String colsName[] = {"STT", "Mã sinh viên", "Tên sinh viên", "Số tháng muốn gia hạn"};
+                    tableModel.setColumnIdentifiers(colsName);
+                    int dem = 0;
+                    while (rs1.next()) {
+                        if (rs1.getString("MaSV").equals(tf_maSV.getText())) {
+                            String[] row = new String[4];
+                            row[0] = ++dem + "";
+                            row[1] = rs1.getString("MaSV");
+                            row[2] = rs1.getString("HoTen");
+                            row[3] = rs1.getInt("YeuCauGiaHan") + "";
+                            tableModel.addRow(row);
+                        }
+
+                    }
+
+                    jTable1.setModel(tableModel);
+                } catch (SQLException ex) {
+                    Logger.getLogger(DanhSachHopDongScreen.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                int x = JOptionPane.showConfirmDialog(this, "Bạn còn muốn tiếp tục tìm kiếm thông tin?", "Thông báo", JOptionPane.YES_NO_OPTION);
+                if (x == 1) {
+                    tf_maSV.setEditable(false);
+                    btn_timTheoMSV.setText("Tìm kiếm theo mã sinh viên");
+                }
+            }
+
+        } else if( loaiBang==3){
+            tf_maSV.setEditable(true);
+            btn_timTheoMSV.setText("Tìm");
+            if (tf_maSV.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Hãy nhập mã sinh viên cần tìm!", "Thông báo", JOptionPane.PLAIN_MESSAGE);
+            } else {
+                try {
+            ResultSet rs1 = hd.ShowDanhSachHopDong();
+            DefaultTableModel tableModel = new DefaultTableModel();
+            String colsName[] = {"STT", "Mã hợp đồng", "Mã sinh viên", "Ngày bắt đầu", "Ngày kết thúc"};
+            tableModel.setColumnIdentifiers(colsName);
+            int dem = 0;
+            while (rs1.next()) {
+
+                SimpleDateFormat ngay = new SimpleDateFormat("dd");
+                SimpleDateFormat thang = new SimpleDateFormat("MM");
+                SimpleDateFormat nam = new SimpleDateFormat("yyyy");
+
+                java.util.Date KetThuc = rs1.getDate("NgayKetThuc");
+                Date HienTai = new Date();
+
+                int namHienTai = Integer.parseInt(nam.format(HienTai));
+                int thangHienTai = Integer.parseInt(thang.format(HienTai));
+                int ngayHienTai = Integer.parseInt(ngay.format(HienTai));
+
+                int namKT = Integer.parseInt(nam.format(KetThuc));
+                int thangKT = Integer.parseInt(thang.format(KetThuc));
+                int ngayKT = Integer.parseInt(ngay.format(KetThuc));
+
+                if (namKT == namHienTai && thangKT - thangHienTai <= 1 && rs1.getString("MaSV").equals(tf_maSV.getText())) {
+
+                    String row[] = new String[5];
+                    row[0] = ++dem + "";
+                    row[1] = rs1.getString("MaHD");
+                    row[3] = rs1.getDate("NgayBatDau").toString();
+                    row[4] = rs1.getDate("NgayKetThuc").toString();
+                    row[2] = rs1.getString("MaSV");
+                    tableModel.addRow(row);
+                }
+            }
+            jTable1.setModel(tableModel);
+        } catch (SQLException ex) {
+            Logger.getLogger(DanhSachHopDongScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                int x = JOptionPane.showConfirmDialog(this, "Bạn còn muốn tiếp tục tìm kiếm thông tin?", "Thông báo", JOptionPane.YES_NO_OPTION);
+                if (x == 1) {
+                    tf_maSV.setEditable(false);
+                    btn_timTheoMSV.setText("Tìm kiếm theo mã sinh viên");
+                }}
         }
     }//GEN-LAST:event_btn_timTheoMSVActionPerformed
-
+    int demm = 0;
     private void btn_chuaCoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_chuaCoActionPerformed
         // TODO add your handling code here:
-        btn_danhSachYeuCauDangKy.setEnabled(false);
-        demSua++;
-        if (demSua % 2 == 1) {
-            setEdi(true);
-            btn_chuaCo.setText("Lưu");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        demm++;
+        String bd = "", kt = "";
+        if (demm % 2 == 1) {
+            dp_ngayBatDau.setEditable(true);
+            dp_ngayKetThuc.setEditable(true);
+            btn_chuaCo.setText("Tìm");
         } else {
-            int x = JOptionPane.showConfirmDialog(this, "Bạn đã chắc chắn sửa đúng thông tin?", "Thông báo", JOptionPane.YES_NO_OPTION);
-            if (x == 0) {
-                toast t = new toast("Sửa thành công!", 600, 650);
-
-                // call the method 
-                btn_chuaCo.setText("Sửa hợp đồng");
-                t.showtoast();
-                setEdi(false);
-
+            try {
+                bd = format.format(dp_ngayBatDau.getDate()).toString();
+                kt = format.format(dp_ngayKetThuc.getDate()).toString();
+                System.out.println(bd + " " + kt);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Bạn chưa chọn đủ thông tin!", "Thông báo", JOptionPane.ERROR_MESSAGE);
             }
+
+            try {
+                ResultSet rs1 = hd.TimTheoKhoangThoiGian(bd, kt);
+
+                DefaultTableModel tableModel = new DefaultTableModel();
+                String colsName[] = {"STT", "Mã hợp đồng", "Mã sinh viên", "Ngày bắt đầu", "Ngày kết thúc"};
+                tableModel.setColumnIdentifiers(colsName);
+                int dem = 0;
+                while (rs1.next()) {
+
+                    String row[] = new String[5];
+                    row[0] = ++dem + "";
+                    row[1] = rs1.getString("MaHD");
+                    row[3] = rs1.getDate("NgayBatDau").toString();
+                    row[4] = rs1.getDate("NgayKetThuc").toString();
+                    row[2] = rs1.getString("MaSV");
+                    tableModel.addRow(row);
+
+                }
+                jTable1.setModel(tableModel);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(DanhSachHopDongScreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            int x = JOptionPane.showConfirmDialog(this, "Bạn có muốn tiếp tục tìm?", "Thông báo", JOptionPane.YES_NO_OPTION);
+            if (x == 1) {
+                dp_ngayBatDau.setEditable(false);
+                dp_ngayKetThuc.setEditable(false);
+                btn_chuaCo.setText("Tìm hợp đồng trong khoảng từ ngày bắt đầu đến ngày kết thúc");
+            } else if (x == 0) {
+                demm--;
+            }
+
         }
+
+
     }//GEN-LAST:event_btn_chuaCoActionPerformed
 
     private void btn_hetHanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hetHanActionPerformed
-        // TODO add your handling code here:
-        /* demHetHan++;
-        if (demHetHan % 2 == 1) {
-            btn_hetHan.setText("Gửi thông báo");
-
-        } else {
-            toast t = new toast("Gửi thành công!", 600, 650);
-
-            // call the method
-            btn_hetHan.setText("Hiển thị danh sách hợp đồng sắp hết hạn");
-            t.showtoast();
-
-        }*/
+        btn_xoaHD.setEnabled(false);
+        btn_chuaCo.setEnabled(false);
+        btn_kyHD.setEnabled(false);
+        btn_timTheoMSV.setEnabled(true);
         loaiBang = 3;
+        btn_chuaBiet.setEnabled(true);
         showHopDongSapHetHan();
     }//GEN-LAST:event_btn_hetHanActionPerformed
 
@@ -552,13 +757,34 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_xoaHDActionPerformed
 
     private void btn_kyHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_kyHDActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            ResultSet rs1 = sv.ShowSinhVienTheoMaSV(tf_maSV.getText());
+            if (rs1.next()) {
+                ThongTinChiTietHopDongScreen a;
+                try {
+                    a = new ThongTinChiTietHopDongScreen(tf_maSV.getText(), loaiBang);
+                    a.setVisible(true);
+                    this.dispose();
+                } catch (ParseException ex) {
+                    Logger.getLogger(DanhSachHopDongScreen.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Không tồn tại mã sinh viên này trong danh sách đăng ký!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DanhSachHopDongScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
 
     }//GEN-LAST:event_btn_kyHDActionPerformed
 
     private void btn_yeuCauGiaHanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_yeuCauGiaHanActionPerformed
         // TODO add your handling code here:
         loaiBang = 4;
+        btn_chuaBiet.setEnabled(false);
+        btn_chuaCo.setEnabled(false);
         try {
             // TODO add your handling code here:
             ResultSet rs1 = sv.ShowSinhVienYeuCauGiaHan();
@@ -579,9 +805,57 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(DanhSachHopDongScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
+        btn_xoaHD.setEnabled(false);
+        btn_kyHD.setEnabled(true);
+        btn_timTheoMSV.setEnabled(true);
 
 
     }//GEN-LAST:event_btn_yeuCauGiaHanActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        CanBoQuanLyHome a = new CanBoQuanLyHome("Nguyen Van A", "012345");
+        a.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void btn_chuaBietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_chuaBietActionPerformed
+        // TODO add your handling code here:
+        try {
+            ResultSet rs1 = hd.ShowDanhSachHopDong();
+
+            int dem = 0;
+            while (rs1.next()) {
+
+                SimpleDateFormat ngay = new SimpleDateFormat("dd");
+                SimpleDateFormat thang = new SimpleDateFormat("MM");
+                SimpleDateFormat nam = new SimpleDateFormat("yyyy");
+
+                java.util.Date KetThuc = rs1.getDate("NgayKetThuc");
+                Date HienTai = new Date();
+
+                int namHienTai = Integer.parseInt(nam.format(HienTai));
+                int thangHienTai = Integer.parseInt(thang.format(HienTai));
+                int ngayHienTai = Integer.parseInt(ngay.format(HienTai));
+
+                int namKT = Integer.parseInt(nam.format(KetThuc));
+                int thangKT = Integer.parseInt(thang.format(KetThuc));
+                int ngayKT = Integer.parseInt(ngay.format(KetThuc));
+
+                if (namKT == namHienTai && thangKT - thangHienTai <= 1) {
+
+                    sv.setThongBao(rs1.getString("MaSV"), 1);
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DanhSachHopDongScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        toast t = new toast("Gửi thành công!", 600, 650);
+
+        // call the method 
+        t.showtoast();
+    }//GEN-LAST:event_btn_chuaBietActionPerformed
 
     /**
      * @param args the command line arguments
@@ -648,4 +922,60 @@ public class DanhSachHopDongScreen extends javax.swing.JFrame {
     private javax.swing.JTextField tf_maHD;
     private javax.swing.JTextField tf_maSV;
     // End of variables declaration//GEN-END:variables
+
+    private void btn_danhSachYeuCauDangKyActionPerformed() {
+        //To change body of generated methods, choose Tools | Templates.
+        loaiBang = 1;
+        try {
+            // TODO add your handling code here:
+            ResultSet rs1 = sv.ShowSinhVienChuaKyHopDong();
+            DefaultTableModel tableModel = new DefaultTableModel();
+            String colsName[] = {"STT", "Mã sinh viên", "Tên sinh viên"};
+            tableModel.setColumnIdentifiers(colsName);
+            int dem = 0;
+            while (rs1.next()) {
+                String[] row = new String[3];
+                row[0] = ++dem + "";
+                row[1] = rs1.getString("MaSV");
+                row[2] = rs1.getString("HoTen");
+                tableModel.addRow(row);
+            }
+
+            jTable1.setModel(tableModel);
+        } catch (SQLException ex) {
+            Logger.getLogger(DanhSachHopDongScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        btn_kyHD.setEnabled(true);
+        btn_timTheoMSV.setEnabled(true);
+    }
+
+    private void btn_yeuCauGiaHanActionPerformed() {
+        loaiBang = 4;
+        btn_chuaBiet.setEnabled(false);
+        btn_chuaCo.setEnabled(false);
+        try {
+            // TODO add your handling code here:
+            ResultSet rs1 = sv.ShowSinhVienYeuCauGiaHan();
+            DefaultTableModel tableModel = new DefaultTableModel();
+            String colsName[] = {"STT", "Mã sinh viên", "Tên sinh viên", "Số tháng muốn gia hạn"};
+            tableModel.setColumnIdentifiers(colsName);
+            int dem = 0;
+            while (rs1.next()) {
+                String[] row = new String[4];
+                row[0] = ++dem + "";
+                row[1] = rs1.getString("MaSV");
+                row[2] = rs1.getString("HoTen");
+                row[3] = rs1.getInt("YeuCauGiaHan") + "";
+                tableModel.addRow(row);
+            }
+
+            jTable1.setModel(tableModel);
+        } catch (SQLException ex) {
+            Logger.getLogger(DanhSachHopDongScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        btn_xoaHD.setEnabled(false);
+        btn_kyHD.setEnabled(true);
+        btn_timTheoMSV.setEnabled(true);
+        //To change body of generated methods, choose Tools | Templates.
+    }
 }

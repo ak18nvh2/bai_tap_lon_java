@@ -105,9 +105,9 @@ public class SettingScreen extends javax.swing.JFrame {
             }
          else {
             
-//                this.dispose();
-//                SinhVienHome a = new SinhVienHome();
-//                a.setVisible(true);
+                this.dispose();
+                SinhVienHome a = new SinhVienHome(this.hoTen);
+                a.setVisible(true);
             }
         
 
